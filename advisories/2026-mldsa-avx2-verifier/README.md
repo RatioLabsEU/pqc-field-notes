@@ -95,3 +95,7 @@ In the affected code the verifier unpacks `z` and proceeds under the comment "sh
 ## Credit
 
 The defects were found and reported upstream by Eric Biggers. The test vectors are from Project Wycheproof. This note covers only their presence in downstream software.
+
+## Method
+
+This analysis was designed, implemented and run with AI assistance (Claude Fable 5.2, by Anthropic), under the direction of RatioLabs. The results above do not depend on that: `run.sh` reproduces them from public sources.
