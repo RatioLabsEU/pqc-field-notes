@@ -76,8 +76,6 @@ ML-DSA rejects valid signatures whose context is 254 or 255 bytes long. This was
 2. The encapsulation key check is missing, or present but ineffective.
 3. A legitimate edge case is refused: the empty message, the longest context.
 
-Where a project already runs Wycheproof in its own tests, we found nothing.
-
 ## Reports
 
 - `gmsm` was told through public issues, and the Nettle maintainer by mail.
