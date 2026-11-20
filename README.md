@@ -1,4 +1,4 @@
-# RatioLabs PQC Lab
+# PQC field notes · RatioLabs
 
 Notes and reproducible tests from our review of post-quantum cryptography implementations (ML-KEM, ML-DSA).
 
