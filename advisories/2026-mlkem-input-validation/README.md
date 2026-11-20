@@ -58,6 +58,7 @@ Needs git, python3, cmake, make and gcc; cargo for the `pqcrypto-mlkem` part. Ev
 | April 2025 | liboqs 0.13.0 released with mlkem-native for ML-KEM |
 | 2026 | The `pqcrypto` crates are archived |
 | 20 November 2026 | We run Wycheproof against released versions and record the results above |
+| 20 November 2026 | RustSec publishes [RUSTSEC-2026-0585](https://rustsec.org/advisories/RUSTSEC-2026-0585.html) for `pqcrypto-mlkem` |
 
 ## Credit
 

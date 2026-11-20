@@ -94,6 +94,8 @@ In the affected code the verifier unpacks `z` and proceeds under the comment "sh
 | 9 July 2026 | liboqs 0.16.0 released with mldsa-native as the ML-DSA implementation |
 | August 2026 | PQClean archived |
 | 19–20 November 2026 | We confirm the defects in liboqs 0.12.0 to 0.15.0, PQClean, pqcrypto-mldsa 0.1.2 and oqs 0.11.0 |
+| 20 November 2026 | Public issue in liboqs ([#2721](https://github.com/open-quantum-safe/liboqs/issues/2721)); question upstream about a CVE ([pq-crystals/dilithium#113](https://github.com/pq-crystals/dilithium/issues/113)); request for a new release of the `oqs` crate ([liboqs-rust#320](https://github.com/open-quantum-safe/liboqs-rust/issues/320)) |
+| 20 November 2026 | RustSec publishes [RUSTSEC-2026-0586](https://rustsec.org/advisories/RUSTSEC-2026-0586.html) for `pqcrypto-mldsa` |
 
 ## Credit
 
