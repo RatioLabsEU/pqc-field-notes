@@ -1,0 +1,76 @@
+$ PYTHON313=<path to CPython 3.13> ./run.sh keeper kyber
+Wycheproof 65ca494727a5
+== keeper-mlkem 1.0.2  (wheel cp313-cp313-manylinux_2_5_x86_64, Python 3.13.8, from PyPI)
+keeper-mlkem 1.0.2             ML-KEM-512  | seed (derived dk): 180 vectors, INVALID ACCEPTED=0, valid fails=0 (no interface 20) | encaps: 261 vectors, INVALID ACCEPTED=108, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+keeper-mlkem 1.0.2             ML-KEM-768  | seed (derived dk): 181 vectors, INVALID ACCEPTED=0, valid fails=0 (no interface 20) | encaps: 265 vectors, INVALID ACCEPTED=112, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+keeper-mlkem 1.0.2             ML-KEM-1024 | seed (derived dk): 182 vectors, INVALID ACCEPTED=0, valid fails=0 (no interface 20) | encaps: 269 vectors, INVALID ACCEPTED=116, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+    300   INVALID ACCEPTED  [encaps]   Public key not reduced
+     36   INVALID ACCEPTED  [encaps]   ModulusOverflow
+== kyber-py 1.2.0  (wheel py3-none-any, Python 3.14.2, from PyPI)
+kyber-py 1.2.0                 ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+kyber-py 1.2.0                 ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+kyber-py 1.2.0                 ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+$ PYTHON313=<path to CPython 3.13> ./run.sh pqcrypto dilithium mlkem pykyber diagnose
+Wycheproof 65ca494727a5
+== pqcrypto 1.0.0  (wheel cp39-abi3-manylinux_2_34_x86_64, Python 3.14.2, from PyPI)
+pqcrypto 1.0.0                 ML-KEM-512  | seed (derived dk): 180 vectors, INVALID ACCEPTED=0, valid fails=0 (no interface 20) | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+pqcrypto 1.0.0                 ML-KEM-768  | seed (derived dk): 181 vectors, INVALID ACCEPTED=0, valid fails=0 (no interface 20) | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+pqcrypto 1.0.0                 ML-KEM-1024 | seed (derived dk): 182 vectors, INVALID ACCEPTED=0, valid fails=0 (no interface 20) | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+pqcrypto 1.0.0                     ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=1
+pqcrypto 1.0.0                     ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=1
+pqcrypto 1.0.0                     ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=1
+      3   valid rejected     (error InvalidSignatureError)  longest context ValidSignature
+== dilithium-py 1.5.1  (wheel py3-none-any, Python 3.14.2, from PyPI)
+dilithium-py 1.5.1                 ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+dilithium-py 1.5.1                 ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+dilithium-py 1.5.1                 ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== mlkem 0.2.0  (wheel cp314-cp314-manylinux_2_17_x86_64, Python 3.14.2, from PyPI)
+mlkem 0.2.0                    ML-KEM-512  | seed (derived dk): 180 vectors, INVALID ACCEPTED=0, valid fails=0 (no interface 20) | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+mlkem 0.2.0                    ML-KEM-768  | seed (derived dk): 181 vectors, INVALID ACCEPTED=0, valid fails=0 (no interface 20) | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+mlkem 0.2.0                    ML-KEM-1024 | seed (derived dk): 182 vectors, INVALID ACCEPTED=0, valid fails=0 (no interface 20) | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== pykyber 2.0.0  (wheel cp38-abi3-manylinux2014_x86_64, Python 3.14.2, from PyPI)
+pykyber 2.0.0                  ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+pykyber 2.0.0                  ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+pykyber 2.0.0                  ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+######## diagnosis
+   sources read for the diagnosis (sha256 checked against the index):
+   52f472df2c7ebcad64770cdfbc1321bb4014009ec32f731a3faa2afd4870d837  keeper_mlkem-1.0.2.tar.gz
+   ab5ce200eaebd55ad7cfc2f59e67b51385e03e5c7ba29de894e20d41a0a123f9  mlkem-0.0.1.tar.gz
+   8cf4e6fb39d7ab14c205f4b9ae5e1e0e224be2eee70e7bdaebc107aef184070c  mlkem-0.0.2.tar.gz
+   8bd425a2d7ffd1e948a238516f59abd60d729610f2e9d215ca7fd8d6b815a34a  mlkem-0.0.3.tar.gz
+   33d2b5f5801850f7fd9116aadbe8c65bed5fa00d21d0a1ce4a78491868649ed5  crates/backbone-ml-dsa-0.2.0.crate
+#### pqcrypto 1.0.0 (backbone-ml-dsa 0.2.0): context and message length, through the public interface
+  context of 0 bytes: signs and verifies it
+  context of 253 bytes: signs and verifies it
+  context of 254 bytes: sign raises ValueError: invalid context length
+  context of 255 bytes: sign raises ValueError: invalid context length
+  context of 256 bytes: sign raises ValueError: invalid context length
+  message of 1048576 bytes: signs and verifies it
+  message of 1048577 bytes: sign raises ValueError: invalid message length
+#### signatures made with dilithium-py (which accepts them) and verified with pqcrypto
+  message of 1048577 bytes, context of 0 bytes: pqcrypto rejects (InvalidSignatureError)
+  message of 5 bytes, context of 253 bytes: pqcrypto accepts
+  message of 5 bytes, context of 254 bytes: pqcrypto rejects (InvalidSignatureError)
+  message of 5 bytes, context of 255 bytes: pqcrypto rejects (InvalidSignatureError)
+   code: 818:    if prefix.len() > 255 { 903:    if prefix.len() > 255 { 
+         821:    if msg.len() > (1 << 20) { 906:    if msg.len() > (1 << 20) { 
+#### keeper-mlkem 1.0.2: the encapsulation key check in encaps() does not detect coefficients >= q
+  tcId=114 (Public key not reduced): largest decoded coefficient = 4089 (q = 3329)
+  encode(decode(ek)) == ek[:1152]: True  -> the check never fails
+   code: mlkem/mlkem_core.py 126 127 
+#### keeper-mlkem's C module compared with the one in mlkem 0.0.1-0.0.3 on PyPI
+   mlkem 0.0.1: 4 lines differ
+   mlkem 0.0.2: 4 lines differ
+   mlkem 0.0.3: 4 lines differ
+   143,146d142
+   <         // TODO - might not need this
+   <         if (d == 12) {
+   <             result.coeffs[i] %= Q;
+   <         }
+#### sampling_bytes.py (does any vector need more than the 840 SHAKE128 bytes keeper-mlkem asks for per entry of A?)
+ML-KEM-512: 174 distinct rho values; maximum bytes needed = 597; rho values above 840 bytes = 0
+ML-KEM-768: 174 distinct rho values; maximum bytes needed = 585; rho values above 840 bytes = 0
+ML-KEM-1024: 174 distinct rho values; maximum bytes needed = 585; rho values above 840 bytes = 0
+

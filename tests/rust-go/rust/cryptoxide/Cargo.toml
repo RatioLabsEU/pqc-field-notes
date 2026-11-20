@@ -1,0 +1,10 @@
+# Copyright 2026 RatioLabs (https://www.ratiolabs.eu). Licensed under the Apache License, Version 2.0.
+[package]
+name = "wycheproof-cryptoxide"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Exact version: the latest published on crates.io (ML-KEM since 0.6.2, ML-DSA since 0.6.4).
+[dependencies]
+cryptoxide = { version = "=0.6.7", default-features = false, features = ["mlkem", "mldsa"] }

@@ -1,0 +1,12 @@
+{
+  "name": "wycheproof-small-packages-npm",
+  "private": true,
+  "description": "Wycheproof vectors against npm packages with their own ML-KEM / ML-DSA (pinned versions). Copyright 2026 RatioLabs (https://www.ratiolabs.eu). Licensed under the Apache License, Version 2.0.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "dependencies": {
+    "@theqrl/mldsa87": "2.2.0",
+    "noqtis": "0.2.2",
+    "@umbra-privacy/quick-mlkem768": "0.1.1"
+  }
+}

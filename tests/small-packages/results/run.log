@@ -1,0 +1,85 @@
+$ ./run.sh dart npm analyze
+#### Wycheproof 65ca494727a5, x86_64, 2 cores
+#### Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on "linux_x64"
+   dart-archive SDK, published sha256: 759bed01e0aeb50e1a0b0a19474ba5c80c6087ce1d37b3214e475c81a44430e8
+   pub.dev cipherlib: "04e6c25e2740610f24b6fb3ba57fc878ca5e2b87d09248f3a19856b6f7c71e17"
+          version: "0.7.2"
+   pub.dev pqcrypto: "1efc05e3a2c61d0f061e2b512207d1447b22bdad91f517ca91e6fac0df0f5136"
+          version: "0.4.4"
+pqcrypto (Dart) 0.4.4          ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=1, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+pqcrypto (Dart) 0.4.4          ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+pqcrypto (Dart) 0.4.4          ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+pqcrypto (Dart) 0.4.4              ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+pqcrypto (Dart) 0.4.4              ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+pqcrypto (Dart) 0.4.4              ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+      1   INVALID ACCEPTED  [seed]   Private key too short
+cipherlib (Dart) 0.7.2         ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+cipherlib (Dart) 0.7.2         ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+cipherlib (Dart) 0.7.2         ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+#### node v24.22.2, npm 11.19.1
+   npm @theqrl/mldsa87 2.2.0 sha512-rujMGT6vdMTQbtVyMiOL1Q3e7VxLrNZqP/disR4m20+nen4e+bjR4wvt/av8M5e0qDNVjO7sjGctlzC81/qVgw==
+   npm @umbra-privacy/quick-mlkem768 0.1.1 sha512-1O7jAnYGQxQAF8vp3TJ//xkELc3wuSF7lhYfn1zvMg3G4d6MhUcIMxyUvtGzi96CQ/7/FWvuTC97y0RvfVXmrg==
+   npm noqtis 0.2.2 sha512-qWMv+YCXn91bCUYONXfeGeT8dzB6LZyvn5kl7OqcGUg1kXO4JVvx2JTx+6/amOFH0A8Tv9kqWdqXZQZD/0dd8g==
+@theqrl/mldsa87 2.2.0 ML-DSA-87     vectors=241   INVALID ACCEPTED=0   valid rejected=0
+noqtis 0.2.2 (lib 0.2.2) ML-KEM-512 | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+noqtis 0.2.2 (lib 0.2.2) ML-KEM-768 | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+noqtis 0.2.2 (lib 0.2.2) ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+noqtis 0.2.2 (lib 0.2.2) ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+noqtis 0.2.2 (lib 0.2.2) ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+noqtis 0.2.2 (lib 0.2.2) ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+quick-mlkem768 0.1.1 ML-KEM-768 | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+      1   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+      1   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+######## analyze_vectors.py (diagnosis of the vectors, to explain the KyberNET result)
+== ML-KEM-512
+   valid D with a zero seed half:  10  z=0 Rho leads to a matrix with unusually large entries
+   valid D with a zero seed half:  10  z=0 Rho leads to frequent rejection on matrix expansion
+   valid D with a zero seed half:  10  z=0 Rho leads to matrix containing zeroes
+== ML-KEM-768
+   valid D with a zero seed half:  10  z=0 Rho leads to a matrix with unusually large entries
+   valid D with a zero seed half:  10  z=0 Rho leads to frequent rejection on matrix expansion
+   valid D with a zero seed half:  10  z=0 Rho leads to matrix containing zeroes
+== ML-KEM-1024
+   valid D with a zero seed half:  10  z=0 Rho leads to a matrix with unusually large entries
+   valid D with a zero seed half:  10  z=0 Rho leads to frequent rejection on matrix expansion
+   valid D with a zero seed half:  10  z=0 Rho leads to matrix containing zeroes
+
+$ ./run.sh nuget php
+#### Wycheproof 65ca494727a5, x86_64, 2 cores
+#### dotnet 10.0.403, runtime NETCore.App 10.0.14
+   nuget.org 1.0.3 kybernet sha512(base64)=FmvJ6EehE4hBZVr7f77Sojt0QWNupo5rCSi5BoAjJs7GnWKLBIlVZeiDT8ON0qEEwjbnRTlqw7PxL4cU5K49Kw==
+KyberNET 1.0.3                 ML-KEM-512  | seed: 180 vectors, INVALID ACCEPTED=0, valid fails=30 (no interface 20) | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+KyberNET 1.0.3                 ML-KEM-768  | seed: 181 vectors, INVALID ACCEPTED=0, valid fails=30 (no interface 20) | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+KyberNET 1.0.3                 ML-KEM-1024 | seed: 182 vectors, INVALID ACCEPTED=0, valid fails=30 (no interface 20) | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+     30   valid fails       [seed]  (error RandomBitGenerationException)  Rho leads to matrix containing zeroes
+     30   valid fails       [seed]  (error RandomBitGenerationException)  Rho leads to frequent rejection on matrix expansion
+     30   valid fails       [seed]  (error RandomBitGenerationException)  Rho leads to a matrix with unusually large entries
+#### PHP 8.4.27 (cli) (built: Oct 28 2026 18:54:26) (NTS), Composer version 2.10.3 2026-08-27 13:34:23
+   packagist paragonie/pqcrypto_compat v0.3.4 commit d15b17cc6f2e922c780e928d27f4677aba0b8e05 dist sha (empty)
+   packagist paragonie/sodium_compat v2.6.0 commit 3f1ee77cc481eeebdbd562dc21da33eaf994cc24 dist sha (empty)
+pqcrypto_compat v0.3.4 ML-KEM-512 | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface (9)
+pqcrypto_compat v0.3.4 ML-KEM-768 | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface (9)
+pqcrypto_compat v0.3.4 ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface (9)
+pqcrypto_compat v0.3.4 ML-DSA-44    vectors=180   INVALID ACCEPTED=0   valid rejected=0
+pqcrypto_compat v0.3.4 ML-DSA-65    vectors=210   INVALID ACCEPTED=0   valid rejected=0
+pqcrypto_compat v0.3.4 ML-DSA-87    vectors=241   INVALID ACCEPTED=0   valid rejected=0
+
+$ ./run.sh swift
+#### Wycheproof 65ca494727a5, x86_64, 2 cores
+#### Swift version 6.4.2 (swift-6.4.2-RELEASE)
+   signature of swift-6.4.2-RELEASE-ubuntu24.04.tar.gz: gpg: Good signature from "Swift 6.x Release Signing Key <swift-infrastructure@forums.swift.org>" [unknown]
+   BigInt: 1.24.0 7c7b1be2f6714ce03833879b0aab4b20293c0207, changes: ?? Sources/BigInt/SecRandomLinux.swift 
+   SwiftKyber: 3.5.0 9dcd9efd90c48f10ad8ec2e6dced43e325625a1a, changes: ?? Sources/SwiftKyber/SecRandomLinux.swift 
+   SwiftDilithium: 3.6.0 452e507c68879a4a584502e1ef55605efb224e79, changes: ?? Sources/SwiftDilithium/SecRandomLinux.swift 
+   Package.resolved: asn1 2.7.0 e38d1b8b43d8b53ffadde9836f34289176bb7a0c
+   Package.resolved: digest 1.13.0 95ba89b494aaff5f3cd2933c03b9a890323dbf2c
+   Package.resolved: swiftdilithium 3.6.0 452e507c68879a4a584502e1ef55605efb224e79
+SwiftKyber 3.5.0 ML-KEM-512    | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps (key acceptance only): 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+SwiftKyber 3.5.0 ML-KEM-768    | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps (key acceptance only): 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+SwiftKyber 3.5.0 ML-KEM-1024   | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps (key acceptance only): 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+SwiftDilithium 3.6.0 ML-DSA-44      vectors=180   INVALID ACCEPTED=0   valid rejected=0
+SwiftDilithium 3.6.0 ML-DSA-65      vectors=210   INVALID ACCEPTED=0   valid rejected=0
+SwiftDilithium 3.6.0 ML-DSA-87      vectors=241   INVALID ACCEPTED=0   valid rejected=0
+

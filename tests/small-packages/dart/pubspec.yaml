@@ -1,0 +1,11 @@
+# Wycheproof test program against pure-Dart packages from pub.dev.
+# Versions pinned so that the log says exactly what was tested.
+#
+# Copyright 2026 RatioLabs (https://www.ratiolabs.eu). Licensed under the Apache License, Version 2.0.
+name: wycheproof_dart
+publish_to: none
+environment:
+  sdk: ^3.5.0
+dependencies:
+  pqcrypto: 0.4.4
+  cipherlib: 0.7.2

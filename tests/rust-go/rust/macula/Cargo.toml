@@ -1,0 +1,13 @@
+# Copyright 2026 RatioLabs (https://www.ratiolabs.eu). Licensed under the Apache License, Version 2.0.
+[package]
+name = "wycheproof-macula"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Latest versions published on crates.io. The `internal` feature is the one the crate itself documents for checking
+# vectors with fixed seeds ("public only with the `internal` feature, and it is for testing"); the program also runs
+# the vectors through the normal public interface alone and says so in the name.
+[dependencies]
+macula-mlkem = { version = "=0.3.0", features = ["internal"] }
+macula-mldsa = { version = "=0.3.0" }

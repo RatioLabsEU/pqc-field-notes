@@ -1,0 +1,643 @@
+# Wycheproof 65ca494727a5
+# Machine: Linux 6.8.0-1070-azure x86_64; 2 cores; qemu-aarch64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)
+# sha256 of the test programs:
+#   0b5556c410641a4381d0587b02971e3294806d07040e4945375c103041dbe32f  go/common/common.go
+#   78e465670247f057c1abdeab0f7bb3b64ff6faf883ecc1f173fe66c547a148ac  go/gmsm/main.go
+#   241271054e06850a533732d386f6b49f753d90259fe80a100caab031be434cb6  go/gmsm/variant_asm.go
+#   e042940d07ff18285d8a502f0470d0d2a3a5fd238e2cc8f692a4deb5e2698c2d  go/gmsm/variant_purego.go
+#   abb60459376e3a1fa672124cad160f6dd7279a9b96648e1ada8b5f2e463cccc5  mlkem_harness.h
+#   06e0675321787c5d9ff39b596e49b1054f9df85d168169c01c9c07a35cde51b3  mldsa_harness.h
+#   e8623a54e55be253a8fdf13dbdbd60a9221ca70ca1c0fffca0569865744820cb  mlkem_leancrypto.c
+#   9d564dbda72fd39d02a82aad6530229ee6fae0edc903981df7607303de7ca604  mldsa_leancrypto.c
+#   1663e7fc09a572913aae1f0bcab619aad2296552b1c8db5b93b59136559e0608  wycheproof.zig
+
+########## gmsm
+#### gmsm on other architectures · go version go1.27.3 linux/amd64 · qemu-aarch64 version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)
+https://proxy.golang.org,direct
+github.com/emmansun/gmsm v0.45.4 h1:8JGSr/aos2cnU75keyXgKV9Vri633y0522jlvR4Qa78=
+github.com/emmansun/gmsm v0.45.4/go.mod h1:1wuVNp9NKEbJxv9bwHFgQdhv62ztAnUIiDqR8uvMau4=
+   (default GORISCV64: rva20u64; default GOPPC64: power8)
+## arm64 · asm · binary gmsm-arm64-asm · qemu-aarch64 -cpu max
+== gmsm v0.45.4, Go go1.27.3 arm64, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 28 of 38 .s functions for arm64
+     yes: bitUnpackSignedTwoPower17NEON bitUnpackSignedTwoPower19NEON decodeAndDecompressU10NEON decodeAndDecompressU11NEON internalInverseNTTNEON internalNTTMulAccKeyGenNEON internalNTTMulAccNEON internalNTTMulNEON internalNTTNEON nttMatRowVecMulNEON nttMulNEON polyAddAssignNEON polyInfinityNormNEON polySubAssignNEON rejUniformARM64 ringCompressAndEncode10NEON ringCompressAndEncode11NEON ringCompressAndEncode1NEON ringCompressAndEncode4NEON ringCompressAndEncode5NEON ringDecodeAndDecompress4NEON ringDecodeAndDecompress5NEON samplePolyCBD2NEON samplePolyCBD3NEON simpleBitPack4BitsARM64 simpleBitPack6BitsARM64 useHintPolyGamma32ARM64 useHintPolyGamma88ARM64 
+     no: bitPackSignedTwoPower17NEON bitPackSignedTwoPower19NEON decomposeSubToR0Gamma32ARM64 decomposeSubToR0Gamma88ARM64 makeHintPolyGamma32NEON makeHintPolyGamma88NEON nttMulAccNEON polyInfinityNormSignedNEON simpleBitPack4BitsHighBitsGamma32NEON simpleBitPack6BitsHighBitsGamma88NEON 
+   CPU detection executed: (none)
+## arm64 · purego · binary gmsm-arm64-purego · qemu-aarch64 -cpu max
+== gmsm v0.45.4, Go go1.27.3 arm64, variant=purego
+gmsm ML-KEM-512 (purego)           | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (purego)           | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (purego)          | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (purego)            vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (purego)            vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (purego)            vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 0 of 38 .s functions for arm64
+   CPU detection executed: (none)
+## riscv64 · asm-max · binary gmsm-riscv64-asm · qemu-riscv64 -cpu max
+== gmsm v0.45.4, Go go1.27.3 riscv64, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 30 of 42 .s functions for riscv64
+     yes: bitUnpackSignedTwoPower17RVV bitUnpackSignedTwoPower19RVV copyOut4RVV decodeAndDecompressU10RVV decodeAndDecompressU11RVV internalInverseNTTRVV internalNTTMulAccKeyGenRVV internalNTTMulAccRVV internalNTTMulRVV internalNTTRVV nttMatRowVecMulRVV nttMulRVV polyAddAssignRVV polyInfinityNormRVV polySubAssignRVV rejUniformAsm ringCompressAndEncode10RVV ringCompressAndEncode11RVV ringCompressAndEncode1RVV ringCompressAndEncode4RVV ringCompressAndEncode5RVV ringDecodeAndDecompress4RVV ringDecodeAndDecompress5RVV samplePolyCBD2RVV samplePolyCBD3RVV simpleBitPack4BitsRVV simpleBitPack6BitsRVV useHintPolyGamma32RVV useHintPolyGamma88RVV xorIn4RVV 
+     no: bitPackSignedTwoPower17RVV bitPackSignedTwoPower19RVV decomposeSubToR0Gamma32RVV decomposeSubToR0Gamma88RVV makeHintPolyGamma32RVV makeHintPolyGamma88RVV nttMulAccRVV permute4RVV128 permute4RVV256 polyInfinityNormSignedRVV simpleBitPack4BitsHighBitsGamma32RVV simpleBitPack6BitsHighBitsGamma88RVV 
+   CPU detection executed: github.com/emmansun/gmsm/internal/deps/cpu.riscvHWProbe internal/cpu.riscvHWProbe 
+## riscv64 · asm-max-vlen256 · binary gmsm-riscv64-asm · qemu-riscv64 -cpu max,vlen=256
+== gmsm v0.45.4, Go go1.27.3 riscv64, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 30 of 42 .s functions for riscv64
+     yes: bitUnpackSignedTwoPower17RVV bitUnpackSignedTwoPower19RVV copyOut4RVV decodeAndDecompressU10RVV decodeAndDecompressU11RVV internalInverseNTTRVV internalNTTMulAccKeyGenRVV internalNTTMulAccRVV internalNTTMulRVV internalNTTRVV nttMatRowVecMulRVV nttMulRVV polyAddAssignRVV polyInfinityNormRVV polySubAssignRVV rejUniformAsm ringCompressAndEncode10RVV ringCompressAndEncode11RVV ringCompressAndEncode1RVV ringCompressAndEncode4RVV ringCompressAndEncode5RVV ringDecodeAndDecompress4RVV ringDecodeAndDecompress5RVV samplePolyCBD2RVV samplePolyCBD3RVV simpleBitPack4BitsRVV simpleBitPack6BitsRVV useHintPolyGamma32RVV useHintPolyGamma88RVV xorIn4RVV 
+     no: bitPackSignedTwoPower17RVV bitPackSignedTwoPower19RVV decomposeSubToR0Gamma32RVV decomposeSubToR0Gamma88RVV makeHintPolyGamma32RVV makeHintPolyGamma88RVV nttMulAccRVV permute4RVV128 permute4RVV256 polyInfinityNormSignedRVV simpleBitPack4BitsHighBitsGamma32RVV simpleBitPack6BitsHighBitsGamma88RVV 
+   CPU detection executed: github.com/emmansun/gmsm/internal/deps/cpu.riscvHWProbe internal/cpu.riscvHWProbe 
+## riscv64 · asm-rva23-max · binary gmsm-riscv64-rva23-asm · qemu-riscv64 -cpu max
+== gmsm v0.45.4, Go go1.27.3 riscv64, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 30 of 42 .s functions for riscv64
+     yes: bitUnpackSignedTwoPower17RVV bitUnpackSignedTwoPower19RVV copyOut4RVV decodeAndDecompressU10RVV decodeAndDecompressU11RVV internalInverseNTTRVV internalNTTMulAccKeyGenRVV internalNTTMulAccRVV internalNTTMulRVV internalNTTRVV nttMatRowVecMulRVV nttMulRVV polyAddAssignRVV polyInfinityNormRVV polySubAssignRVV rejUniformAsm ringCompressAndEncode10RVV ringCompressAndEncode11RVV ringCompressAndEncode1RVV ringCompressAndEncode4RVV ringCompressAndEncode5RVV ringDecodeAndDecompress4RVV ringDecodeAndDecompress5RVV samplePolyCBD2RVV samplePolyCBD3RVV simpleBitPack4BitsRVV simpleBitPack6BitsRVV useHintPolyGamma32RVV useHintPolyGamma88RVV xorIn4RVV 
+     no: bitPackSignedTwoPower17RVV bitPackSignedTwoPower19RVV decomposeSubToR0Gamma32RVV decomposeSubToR0Gamma88RVV makeHintPolyGamma32RVV makeHintPolyGamma88RVV nttMulAccRVV permute4RVV128 permute4RVV256 polyInfinityNormSignedRVV simpleBitPack4BitsHighBitsGamma32RVV simpleBitPack6BitsHighBitsGamma88RVV 
+   CPU detection executed: github.com/emmansun/gmsm/internal/deps/cpu.riscvHWProbe internal/cpu.riscvHWProbe 
+## riscv64 · asm-noV · binary gmsm-riscv64-asm · qemu-riscv64 -cpu rv64
+== gmsm v0.45.4, Go go1.27.3 riscv64, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 1 of 42 .s functions for riscv64
+     yes: rejUniformAsm 
+     no: bitPackSignedTwoPower17RVV bitPackSignedTwoPower19RVV bitUnpackSignedTwoPower17RVV bitUnpackSignedTwoPower19RVV copyOut4RVV decodeAndDecompressU10RVV decodeAndDecompressU11RVV decomposeSubToR0Gamma32RVV decomposeSubToR0Gamma88RVV internalInverseNTTRVV internalNTTMulAccKeyGenRVV internalNTTMulAccRVV internalNTTMulRVV internalNTTRVV makeHintPolyGamma32RVV makeHintPolyGamma88RVV nttMatRowVecMulRVV nttMulAccRVV nttMulRVV permute4RVV128 permute4RVV256 polyAddAssignRVV polyInfinityNormRVV polyInfinityNormSignedRVV polySubAssignRVV ringCompressAndEncode10RVV ringCompressAndEncode11RVV ringCompressAndEncode1RVV ringCompressAndEncode4RVV ringCompressAndEncode5RVV ringDecodeAndDecompress4RVV ringDecodeAndDecompress5RVV samplePolyCBD2RVV samplePolyCBD3RVV simpleBitPack4BitsHighBitsGamma32RVV simpleBitPack4BitsRVV simpleBitPack6BitsHighBitsGamma88RVV simpleBitPack6BitsRVV useHintPolyGamma32RVV useHintPolyGamma88RVV xorIn4RVV 
+   CPU detection executed: github.com/emmansun/gmsm/internal/deps/cpu.riscvHWProbe internal/cpu.riscvHWProbe 
+## riscv64 · purego · binary gmsm-riscv64-purego · qemu-riscv64 -cpu max
+== gmsm v0.45.4, Go go1.27.3 riscv64, variant=purego
+gmsm ML-KEM-512 (purego)           | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (purego)           | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (purego)          | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (purego)            vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (purego)            vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (purego)            vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 0 of 42 .s functions for riscv64
+   CPU detection executed: internal/cpu.riscvHWProbe 
+## ppc64le · asm-power10 · binary gmsm-ppc64le-asm · qemu-ppc64le -cpu power10
+== gmsm v0.45.4, Go go1.27.3 ppc64le, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 18 of 18 .s functions for ppc64le
+     yes: decodeAndDecompressU10PPC64LE decodeAndDecompressU11PPC64LE internalInverseNTTPPC64LE internalNTTMulAccPPC64LE internalNTTMulPPC64LE internalNTTPPC64LE polyAddAssignPPC64LE polySubAssignPPC64LE rejUniformPPC64LE ringCompressAndEncode10PPC64LE ringCompressAndEncode11PPC64LE ringCompressAndEncode1PPC64LE ringCompressAndEncode4PPC64LE ringCompressAndEncode5PPC64LE ringDecodeAndDecompress4PPC64LE ringDecodeAndDecompress5PPC64LE samplePolyCBD2PPC64LE samplePolyCBD3PPC64LE 
+   CPU detection executed: (none)
+## ppc64le · asm-power9 · binary gmsm-ppc64le-asm · qemu-ppc64le -cpu power9
+== gmsm v0.45.4, Go go1.27.3 ppc64le, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 18 of 18 .s functions for ppc64le
+     yes: decodeAndDecompressU10PPC64LE decodeAndDecompressU11PPC64LE internalInverseNTTPPC64LE internalNTTMulAccPPC64LE internalNTTMulPPC64LE internalNTTPPC64LE polyAddAssignPPC64LE polySubAssignPPC64LE rejUniformPPC64LE ringCompressAndEncode10PPC64LE ringCompressAndEncode11PPC64LE ringCompressAndEncode1PPC64LE ringCompressAndEncode4PPC64LE ringCompressAndEncode5PPC64LE ringDecodeAndDecompress4PPC64LE ringDecodeAndDecompress5PPC64LE samplePolyCBD2PPC64LE samplePolyCBD3PPC64LE 
+   CPU detection executed: (none)
+## ppc64le · asm-power8 · binary gmsm-ppc64le-asm · qemu-ppc64le -cpu power8
+   EXITS WITH CODE 2:
+   | == gmsm v0.45.4, Go go1.27.3 ppc64le, variant=assembly
+   | SIGILL: illegal instruction
+   | PC=0xff288 m=0 sigcode=1
+   | instruction bytes: 0x67 0x5b 0x3 0x7c 0x48 0x8a 0x60 0x10 0x48 0x88 0x80 0x10 0x84 0x42 0xa3 0x10
+   | 
+   | goroutine 1 gp=0x6adec2d1e1c0 m=0 mp=0x23f6a0 [running]:
+   instruction at 0xff288:  field_ppc64le.s:2069 0xff288 7c035b67 MTVSRDD R3,R11,VS32 
+   gmsm assembly executed: 5 of 18 .s functions for ppc64le
+     yes: decodeAndDecompressU10PPC64LE internalNTTMulAccPPC64LE internalNTTPPC64LE rejUniformPPC64LE samplePolyCBD3PPC64LE 
+     no: decodeAndDecompressU11PPC64LE internalInverseNTTPPC64LE internalNTTMulPPC64LE polyAddAssignPPC64LE polySubAssignPPC64LE ringCompressAndEncode10PPC64LE ringCompressAndEncode11PPC64LE ringCompressAndEncode1PPC64LE ringCompressAndEncode4PPC64LE ringCompressAndEncode5PPC64LE ringDecodeAndDecompress4PPC64LE ringDecodeAndDecompress5PPC64LE samplePolyCBD2PPC64LE 
+   CPU detection executed: (none)
+## ppc64le · purego-power8 · binary gmsm-ppc64le-purego · qemu-ppc64le -cpu power8
+== gmsm v0.45.4, Go go1.27.3 ppc64le, variant=purego
+gmsm ML-KEM-512 (purego)           | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (purego)           | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (purego)          | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (purego)            vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (purego)            vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (purego)            vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 0 of 18 .s functions for ppc64le
+   CPU detection executed: (none)
+## loong64 · asm-la464 · binary gmsm-loong64-asm · qemu-loongarch64 -cpu la464
+== gmsm v0.45.4, Go go1.27.3 loong64, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 31 of 41 .s functions for loong64
+     yes: bitUnpackSignedTwoPower17LASX bitUnpackSignedTwoPower19LASX copyOut4LASX decodeAndDecompressU10LASX decodeAndDecompressU11LASX internalInverseNTTLASX internalNTTLASX internalNTTMulAccKeyGenLASX internalNTTMulAccLASX internalNTTMulLASX nttMatRowVecMulLASX nttMulLASX permute4LASX polyAddAssignLASX polyInfinityNormLASX polySubAssignLASX rejUniformLoong64 ringCompressAndEncode10LASX ringCompressAndEncode11LASX ringCompressAndEncode1LASX ringCompressAndEncode4LASX ringCompressAndEncode5LASX ringDecodeAndDecompress4LASX ringDecodeAndDecompress5LASX samplePolyCBD2LASX samplePolyCBD3LASX simpleBitPack4BitsLASX simpleBitPack6BitsLASX useHintPolyGamma32LASX useHintPolyGamma88LASX xorIn4LASX 
+     no: bitPackSignedTwoPower17LASX bitPackSignedTwoPower19LASX decomposeSubToR0Gamma32LASX decomposeSubToR0Gamma88LASX makeHintPolyGamma32LASX makeHintPolyGamma88LASX nttMulAccLASX polyInfinityNormSignedLASX simpleBitPack4BitsHighBitsGamma32LASX simpleBitPack6BitsHighBitsGamma88LASX 
+   CPU detection executed: github.com/emmansun/gmsm/internal/deps/cpu.get_cpucfg.abi0 internal/cpu.get_cpucfg.abi0 
+## loong64 · purego · binary gmsm-loong64-purego · qemu-loongarch64 -cpu la464
+== gmsm v0.45.4, Go go1.27.3 loong64, variant=purego
+gmsm ML-KEM-512 (purego)           | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (purego)           | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (purego)          | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (purego)            vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (purego)            vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (purego)            vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 0 of 41 .s functions for loong64
+   CPU detection executed: internal/cpu.get_cpucfg.abi0 
+## s390x · no-tags · binary gmsm-s390x-asm · qemu-s390x -cpu max
+== gmsm v0.45.4, Go go1.27.3 s390x, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 0 of 0 .s functions for s390x
+   CPU detection executed: (none)
+## s390x · purego · binary gmsm-s390x-purego · qemu-s390x -cpu max
+== gmsm v0.45.4, Go go1.27.3 s390x, variant=purego
+gmsm ML-KEM-512 (purego)           | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (purego)           | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (purego)          | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (purego)            vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (purego)            vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (purego)            vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+   gmsm assembly executed: 0 of 0 .s functions for s390x
+   CPU detection executed: (none)
+
+########## leancrypto
+== leancrypto 1.9.1  (tag v1.9.1; sha256 of the tarball c3fe73e0e164d69e8c88c64b1649513f8e4f41c2f541614a9c4298f6368aa194)
+   meson 1.12.1, aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, riscv64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+#### aarch64, build "def" (options: -Ddefault_library=static -Dapps=disabled; LC_HOST_AARCH64 )
+#### aarch64, build "c" (options: -Ddefault_library=static -Dapps=disabled -Ddisable-asm=true; )
+#### riscv64, build "def" (options: -Ddefault_library=static -Dapps=disabled; LC_HOST_RISCV64 riscv64_asm )
+#### riscv64, build "c" (options: -Ddefault_library=static -Dapps=disabled -Ddisable-asm=true; )
+## aarch64 · "def" · max · qemu-aarch64 -cpu max
+leancrypto 1.9.1 aarch64 def max ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def max ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def max ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+   (repeated with lc_kyber_enc and the internal generator, accept/reject only:)
+leancrypto 1.9.1 aarch64 def max ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def max ML-KEM-768  | seed: 72 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 0 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 0 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def max ML-KEM-1024 | seed: 0 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 0 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 0 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def max [ctx] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def max [ctx] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def max [ctx] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def max [simple] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def max [simple] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def max [simple] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def max [stream] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def max [stream] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def max [stream] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+   errors or warnings on stderr: 
+   rejection traces from the library by source file:
+         630 Error -22 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+         228 Error -22 at ../ml-kem/src/armv8/kyber_indcpa_armv8.c
+           8 Error -22 at ../ml-kem/src/kyber_api.c
+         216 Error -22 at ../ml-kem/src/kyber_indcpa.c
+         444 Error -22 at ../ml-kem/src/kyber_kem.c
+        1038 Error -74 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+   architecture-specific functions executed (qemu -d in_asm), 68 distinct:
+     KeccakF1600_StatePermutex2 KeccakF1600_ce keccak_arm_ce_absorb keccak_arm_ce_squeeze keccak_f1600x2_armce lc_dilithium_65_armv8_10_to_32 
+     lc_dilithium_65_intt_SIMD_bot_armv8 lc_dilithium_65_intt_SIMD_top_armv8 lc_dilithium_65_ntt_SIMD_bot_armv8 lc_dilithium_65_ntt_SIMD_top_armv8 
+     lc_dilithium_65_poly_caddq_armv8 lc_dilithium_65_poly_pointwise_montgomery_armv8 lc_dilithium_65_poly_reduce_armv8 
+     lc_dilithium_65_polyvecl_pointwise_acc_montgomery_armv8 lc_dilithium_65_verify_armv8 lc_dilithium_65_verify_ctx_armv8 lc_dilithium_87_armv8_10_to_32 
+     lc_dilithium_87_intt_SIMD_bot_armv8 lc_dilithium_87_intt_SIMD_top_armv8 lc_dilithium_87_ntt_SIMD_bot_armv8 lc_dilithium_87_ntt_SIMD_top_armv8 
+     lc_dilithium_87_poly_caddq_armv8 lc_dilithium_87_poly_pointwise_montgomery_armv8 lc_dilithium_87_poly_reduce_armv8 
+     lc_dilithium_87_polyvecl_pointwise_acc_montgomery_armv8 lc_dilithium_87_verify_armv8 lc_dilithium_87_verify_ctx_armv8 lc_keccak_absorb_arm_ce 
+     lc_keccak_squeeze_arm_ce lc_keccakf1600_arm_ce lc_kyber_1024_add_add_reduce_armv8 lc_kyber_1024_add_armv8 lc_kyber_1024_add_reduce_armv8 
+     lc_kyber_1024_barret_red_armv8 lc_kyber_1024_basemul_armv8 lc_kyber_1024_cbd2_armv8 lc_kyber_1024_indcpa_dec_armv8 lc_kyber_1024_indcpa_enc_armv8 
+     lc_kyber_1024_indcpa_keypair_armv8 lc_kyber_1024_inv_ntt_armv8 lc_kyber_1024_ntt_armv8 lc_kyber_1024_poly_frombytes_armv8 lc_kyber_1024_poly_tobytes_armv8 
+     lc_kyber_1024_sub_reduce_armv8 lc_kyber_1024_tomont_armv8 lc_kyber_768_add_add_reduce_armv8 lc_kyber_768_add_armv8 lc_kyber_768_add_reduce_armv8 
+     lc_kyber_768_barret_red_armv8 lc_kyber_768_basemul_armv8 lc_kyber_768_cbd2_armv8 lc_kyber_768_indcpa_dec_armv8 lc_kyber_768_indcpa_enc_armv8 
+     lc_kyber_768_indcpa_keypair_armv8 lc_kyber_768_inv_ntt_armv8 lc_kyber_768_ntt_armv8 lc_kyber_768_poly_frombytes_armv8 lc_kyber_768_poly_tobytes_armv8 
+     lc_kyber_768_sub_reduce_armv8 lc_kyber_768_tomont_armv8 sha3_256_arm_ce_init sha3_256_selftest_common sha3_512_arm_ce_init sha3_512_arm_ce_init_nocheck 
+     shake_128_arm_ce_init shake_128_arm_ce_init_nocheck shake_256_arm_ce_init shake_256_arm_ce_init_nocheck 
+## aarch64 · "def" · a53 · qemu-aarch64 -cpu cortex-a53
+leancrypto 1.9.1 aarch64 def a53 ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def a53 ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def a53 ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+   (repeated with lc_kyber_enc and the internal generator, accept/reject only:)
+leancrypto 1.9.1 aarch64 def a53 ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def a53 ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def a53 ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 def a53 [ctx] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def a53 [ctx] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def a53 [ctx] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def a53 [simple] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def a53 [simple] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def a53 [simple] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def a53 [stream] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def a53 [stream] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 def a53 [stream] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+   errors or warnings on stderr: 
+   rejection traces from the library by source file:
+         630 Error -22 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+         456 Error -22 at ../ml-kem/src/armv8/kyber_indcpa_armv8.c
+          12 Error -22 at ../ml-kem/src/kyber_api.c
+         216 Error -22 at ../ml-kem/src/kyber_indcpa.c
+         672 Error -22 at ../ml-kem/src/kyber_kem.c
+        1038 Error -74 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+   architecture-specific functions executed (qemu -d in_asm), 67 distinct:
+     KeccakF1600_StatePermutex2 KeccakF1600_int keccak_arm_asm_absorb keccak_arm_asm_squeeze lc_dilithium_65_armv8_10_to_32 lc_dilithium_65_intt_SIMD_bot_armv8 
+     lc_dilithium_65_intt_SIMD_top_armv8 lc_dilithium_65_ntt_SIMD_bot_armv8 lc_dilithium_65_ntt_SIMD_top_armv8 lc_dilithium_65_poly_caddq_armv8 
+     lc_dilithium_65_poly_pointwise_montgomery_armv8 lc_dilithium_65_poly_reduce_armv8 lc_dilithium_65_polyvecl_pointwise_acc_montgomery_armv8 
+     lc_dilithium_65_verify_armv8 lc_dilithium_65_verify_ctx_armv8 lc_dilithium_87_armv8_10_to_32 lc_dilithium_87_intt_SIMD_bot_armv8 
+     lc_dilithium_87_intt_SIMD_top_armv8 lc_dilithium_87_ntt_SIMD_bot_armv8 lc_dilithium_87_ntt_SIMD_top_armv8 lc_dilithium_87_poly_caddq_armv8 
+     lc_dilithium_87_poly_pointwise_montgomery_armv8 lc_dilithium_87_poly_reduce_armv8 lc_dilithium_87_polyvecl_pointwise_acc_montgomery_armv8 
+     lc_dilithium_87_verify_armv8 lc_dilithium_87_verify_ctx_armv8 lc_keccak_absorb_arm_asm lc_keccak_squeeze_arm_asm lc_keccakf1600_arm_asm 
+     lc_kyber_1024_add_add_reduce_armv8 lc_kyber_1024_add_armv8 lc_kyber_1024_add_reduce_armv8 lc_kyber_1024_barret_red_armv8 lc_kyber_1024_basemul_armv8 
+     lc_kyber_1024_cbd2_armv8 lc_kyber_1024_indcpa_dec_armv8 lc_kyber_1024_indcpa_enc_armv8 lc_kyber_1024_indcpa_keypair_armv8 lc_kyber_1024_inv_ntt_armv8 
+     lc_kyber_1024_ntt_armv8 lc_kyber_1024_poly_frombytes_armv8 lc_kyber_1024_poly_tobytes_armv8 lc_kyber_1024_sub_reduce_armv8 lc_kyber_1024_tomont_armv8 
+     lc_kyber_768_add_add_reduce_armv8 lc_kyber_768_add_armv8 lc_kyber_768_add_reduce_armv8 lc_kyber_768_barret_red_armv8 lc_kyber_768_basemul_armv8 
+     lc_kyber_768_cbd2_armv8 lc_kyber_768_indcpa_dec_armv8 lc_kyber_768_indcpa_enc_armv8 lc_kyber_768_indcpa_keypair_armv8 lc_kyber_768_inv_ntt_armv8 
+     lc_kyber_768_ntt_armv8 lc_kyber_768_poly_frombytes_armv8 lc_kyber_768_poly_tobytes_armv8 lc_kyber_768_sub_reduce_armv8 lc_kyber_768_tomont_armv8 
+     sha3_256_arm_asm_init sha3_256_selftest_common sha3_512_arm_asm_init sha3_512_arm_asm_init_nocheck shake_128_arm_asm_init shake_128_arm_asm_init_nocheck 
+     shake_256_arm_asm_init shake_256_arm_asm_init_nocheck 
+## aarch64 · "c" · max · qemu-aarch64 -cpu max
+leancrypto 1.9.1 aarch64 c max ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 c max ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 c max ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+   (repeated with lc_kyber_enc and the internal generator, accept/reject only:)
+leancrypto 1.9.1 aarch64 c max ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 c max ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 237 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 0 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 c max ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 aarch64 c max [ctx] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 c max [ctx] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 c max [ctx] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 c max [simple] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 c max [simple] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 c max [simple] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 c max [stream] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 c max [stream] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 aarch64 c max [stream] ML-DSA-87  vectors=177   INVALID ACCEPTED=0   valid rejected=0
+   errors or warnings on stderr: 
+   rejection traces from the library by source file:
+         630 Error -22 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+          10 Error -22 at ../ml-kem/src/kyber_api.c
+         672 Error -22 at ../ml-kem/src/kyber_indcpa.c
+         672 Error -22 at ../ml-kem/src/kyber_kem.c
+         912 Error -74 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+   architecture-specific functions executed (qemu -d in_asm), 6 distinct:
+     keccak_absorb.lto_priv.0 keccak_squeeze.lto_priv.0 keccakp_1600 sha3_256_init.lto_priv.0 sha3_512_init.lto_priv.0 sha3_512_init_nocheck.lto_priv.0 
+## riscv64 · "def" · max · qemu-riscv64 -cpu max
+leancrypto 1.9.1 riscv64 def max ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+   (repeated with lc_kyber_enc and the internal generator, accept/reject only:)
+leancrypto 1.9.1 riscv64 def max ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max [ctx] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max [ctx] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max [ctx] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max [simple] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max [simple] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max [simple] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max [stream] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max [stream] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max [stream] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+   errors or warnings on stderr: 
+   rejection traces from the library by source file:
+         630 Error -22 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+          12 Error -22 at ../ml-kem/src/kyber_api.c
+         672 Error -22 at ../ml-kem/src/kyber_kem.c
+         672 Error -22 at ../ml-kem/src/riscv64/kyber_indcpa_rvv.h
+        1038 Error -74 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+   architecture-specific functions executed (qemu -d in_asm), 67 distinct:
+     KeccakF1600_StatePermute_RV64ZBB indcpa_dec_rvv_common.lto_priv.0 indcpa_dec_rvv_common.lto_priv.1 indcpa_dec_rvv_common.lto_priv.2 
+     indcpa_enc_rvv_common.lto_priv.0 indcpa_enc_rvv_common.lto_priv.1 indcpa_enc_rvv_common.lto_priv.2 indcpa_keypair_rvv_common.lto_priv.0 
+     indcpa_keypair_rvv_common.lto_priv.1 indcpa_keypair_rvv_common.lto_priv.2 keccak_riscv_asm_zbb_absorb.lto_priv.0 keccak_riscv_asm_zbb_squeeze.lto_priv.0 
+     kyber_intt_rvv_vlen128 kyber_normal2ntt_order_rvv_vlen128 kyber_ntt2normal_order_rvv_vlen128 kyber_ntt_rvv_vlen128 
+     kyber_poly_basemul_acc_cache_init_rvv_vlen128 kyber_poly_basemul_acc_cached_rvv_vlen128 kyber_poly_basemul_acc_rvv_vlen128 
+     kyber_poly_basemul_cache_init_rvv_vlen128 kyber_poly_basemul_cached_rvv_vlen128 kyber_poly_basemul_rvv_vlen128 kyber_poly_reduce_rvv_vlen128 
+     kyber_poly_tomont_rvv_vlen128 kyber_rej_uniform_rvv_vlen128 kyber_rvv_selector lc_dilithium_44_intt_8l_rvv lc_dilithium_44_normal2ntt_order_8l_rvv 
+     lc_dilithium_44_ntt_8l_rvv lc_dilithium_44_poly_basemul_8l_rvv lc_dilithium_44_poly_basemul_acc_8l_rvv lc_dilithium_44_poly_reduce_rvv 
+     lc_dilithium_65_intt_8l_rvv lc_dilithium_65_normal2ntt_order_8l_rvv lc_dilithium_65_ntt_8l_rvv lc_dilithium_65_poly_basemul_8l_rvv 
+     lc_dilithium_65_poly_basemul_acc_8l_rvv lc_dilithium_65_poly_reduce_rvv lc_dilithium_87_intt_8l_rvv lc_dilithium_87_normal2ntt_order_8l_rvv 
+     lc_dilithium_87_ntt_8l_rvv lc_dilithium_87_poly_basemul_8l_rvv lc_dilithium_87_poly_basemul_acc_8l_rvv lc_dilithium_87_poly_reduce_rvv 
+     lc_kyber_1024_enc_rvv_vlen128 lc_kyber_1024_indcpa_dec_rvv_vlen128 lc_kyber_1024_indcpa_enc_rvv_vlen128 lc_kyber_1024_indcpa_keypair_rvv_vlen128 
+     lc_kyber_1024_keypair_rvv_vlen128 lc_kyber_512_enc_rvv_vlen128 lc_kyber_512_indcpa_dec_rvv_vlen128 lc_kyber_512_indcpa_enc_rvv_vlen128 
+     lc_kyber_512_indcpa_keypair_rvv_vlen128 lc_kyber_512_keypair_rvv_vlen128 lc_kyber_768_enc_rvv_vlen128 lc_kyber_768_indcpa_dec_rvv_vlen128 
+     lc_kyber_768_indcpa_enc_rvv_vlen128 lc_kyber_768_indcpa_keypair_rvv_vlen128 lc_kyber_768_keypair_rvv_vlen128 sha3_256_riscv_asm_zbb_init.lto_priv.0 
+     sha3_256_selftest_common sha3_512_riscv_asm_zbb_init.lto_priv.0 sha3_512_riscv_asm_zbb_init_nocheck.lto_priv.0 shake_128_riscv_asm_zbb_init.lto_priv.0 
+     shake_128_riscv_asm_zbb_init_nocheck.lto_priv.0 shake_256_riscv_asm_zbb_init.lto_priv.0 shake_256_riscv_asm_zbb_init_nocheck.lto_priv.0 
+## riscv64 · "def" · max-vlen256 · qemu-riscv64 -cpu max,vlen=256
+leancrypto 1.9.1 riscv64 def max-vlen256 ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max-vlen256 ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max-vlen256 ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+   (repeated with lc_kyber_enc and the internal generator, accept/reject only:)
+leancrypto 1.9.1 riscv64 def max-vlen256 ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max-vlen256 ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max-vlen256 ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def max-vlen256 [ctx] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max-vlen256 [ctx] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max-vlen256 [ctx] ML-DSA-87  vectors=46   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max-vlen256 [simple] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max-vlen256 [simple] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max-vlen256 [simple] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max-vlen256 [stream] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max-vlen256 [stream] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def max-vlen256 [stream] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+   errors or warnings on stderr: 
+   rejection traces from the library by source file:
+         550 Error -22 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+          12 Error -22 at ../ml-kem/src/kyber_api.c
+         672 Error -22 at ../ml-kem/src/kyber_kem.c
+         672 Error -22 at ../ml-kem/src/riscv64/kyber_indcpa_rvv.h
+         904 Error -74 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+   architecture-specific functions executed (qemu -d in_asm), 67 distinct:
+     KeccakF1600_StatePermute_RV64ZBB indcpa_dec_rvv_common.lto_priv.3 indcpa_dec_rvv_common.lto_priv.4 indcpa_dec_rvv_common.lto_priv.5 
+     indcpa_enc_rvv_common.lto_priv.3 indcpa_enc_rvv_common.lto_priv.4 indcpa_enc_rvv_common.lto_priv.5 indcpa_keypair_rvv_common.lto_priv.3 
+     indcpa_keypair_rvv_common.lto_priv.4 indcpa_keypair_rvv_common.lto_priv.5 keccak_riscv_asm_zbb_absorb.lto_priv.0 keccak_riscv_asm_zbb_squeeze.lto_priv.0 
+     kyber_intt_rvv_vlen256 kyber_normal2ntt_order_rvv_vlen256 kyber_ntt2normal_order_rvv_vlen256 kyber_ntt_rvv_vlen256 
+     kyber_poly_basemul_acc_cache_init_rvv_vlen256 kyber_poly_basemul_acc_cached_rvv_vlen256 kyber_poly_basemul_acc_rvv_vlen256 
+     kyber_poly_basemul_cache_init_rvv_vlen256 kyber_poly_basemul_cached_rvv_vlen256 kyber_poly_basemul_rvv_vlen256 kyber_poly_reduce_rvv_vlen256 
+     kyber_poly_tomont_rvv_vlen256 kyber_rej_uniform_rvv_vlen256 kyber_rvv_selector lc_dilithium_44_intt_8l_rvv lc_dilithium_44_normal2ntt_order_8l_rvv 
+     lc_dilithium_44_ntt_8l_rvv lc_dilithium_44_poly_basemul_8l_rvv lc_dilithium_44_poly_basemul_acc_8l_rvv lc_dilithium_44_poly_reduce_rvv 
+     lc_dilithium_65_intt_8l_rvv lc_dilithium_65_normal2ntt_order_8l_rvv lc_dilithium_65_ntt_8l_rvv lc_dilithium_65_poly_basemul_8l_rvv 
+     lc_dilithium_65_poly_basemul_acc_8l_rvv lc_dilithium_65_poly_reduce_rvv lc_dilithium_87_intt_8l_rvv lc_dilithium_87_normal2ntt_order_8l_rvv 
+     lc_dilithium_87_ntt_8l_rvv lc_dilithium_87_poly_basemul_8l_rvv lc_dilithium_87_poly_basemul_acc_8l_rvv lc_dilithium_87_poly_reduce_rvv 
+     lc_kyber_1024_enc_rvv_vlen256 lc_kyber_1024_indcpa_dec_rvv_vlen256 lc_kyber_1024_indcpa_enc_rvv_vlen256 lc_kyber_1024_indcpa_keypair_rvv_vlen256 
+     lc_kyber_1024_keypair_rvv_vlen256 lc_kyber_512_enc_rvv_vlen256 lc_kyber_512_indcpa_dec_rvv_vlen256 lc_kyber_512_indcpa_enc_rvv_vlen256 
+     lc_kyber_512_indcpa_keypair_rvv_vlen256 lc_kyber_512_keypair_rvv_vlen256 lc_kyber_768_enc_rvv_vlen256 lc_kyber_768_indcpa_dec_rvv_vlen256 
+     lc_kyber_768_indcpa_enc_rvv_vlen256 lc_kyber_768_indcpa_keypair_rvv_vlen256 lc_kyber_768_keypair_rvv_vlen256 sha3_256_riscv_asm_zbb_init.lto_priv.0 
+     sha3_256_selftest_common sha3_512_riscv_asm_zbb_init.lto_priv.0 sha3_512_riscv_asm_zbb_init_nocheck.lto_priv.0 shake_128_riscv_asm_zbb_init.lto_priv.0 
+     shake_128_riscv_asm_zbb_init_nocheck.lto_priv.0 shake_256_riscv_asm_zbb_init.lto_priv.0 shake_256_riscv_asm_zbb_init_nocheck.lto_priv.0 
+## riscv64 · "def" · rv64-noV · qemu-riscv64 -cpu rv64
+leancrypto 1.9.1 riscv64 def rv64-noV ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def rv64-noV ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def rv64-noV ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+   (repeated with lc_kyber_enc and the internal generator, accept/reject only:)
+leancrypto 1.9.1 riscv64 def rv64-noV ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def rv64-noV ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def rv64-noV ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 def rv64-noV [ctx] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def rv64-noV [ctx] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def rv64-noV [ctx] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def rv64-noV [simple] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def rv64-noV [simple] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def rv64-noV [simple] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def rv64-noV [stream] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def rv64-noV [stream] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 def rv64-noV [stream] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+   errors or warnings on stderr: 
+   rejection traces from the library by source file:
+         630 Error -22 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+          12 Error -22 at ../ml-kem/src/kyber_api.c
+         672 Error -22 at ../ml-kem/src/kyber_indcpa.c
+         672 Error -22 at ../ml-kem/src/kyber_kem.c
+        1038 Error -74 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+   architecture-specific functions executed (qemu -d in_asm), 42 distinct:
+     KeccakF1600_StatePermute_RV64ASM keccak_riscv_asm_absorb.lto_priv.0 keccak_riscv_asm_squeeze.lto_priv.0 kyber_intt_rv64im kyber_ntt_rv64im 
+     kyber_poly_basemul_acc_cache_end_rv64im kyber_poly_basemul_acc_cache_init_end_rv64im kyber_poly_basemul_acc_cache_init_rv64im 
+     kyber_poly_basemul_acc_cached_rv64im kyber_poly_basemul_acc_end_rv64im kyber_poly_basemul_acc_rv64im kyber_poly_basemul_cache_init_rv64im 
+     kyber_poly_toplant_rv64im lc_dilithium_44_intt_8l_rv64im lc_dilithium_44_ntt_8l_rv64im lc_dilithium_44_poly_basemul_8l_acc_end_rv64im 
+     lc_dilithium_44_poly_basemul_8l_acc_rv64im lc_dilithium_44_poly_basemul_8l_init_rv64im lc_dilithium_44_poly_basemul_8l_rv64im 
+     lc_dilithium_44_poly_reduce_rv64im lc_dilithium_65_intt_8l_rv64im lc_dilithium_65_ntt_8l_rv64im lc_dilithium_65_poly_basemul_8l_acc_end_rv64im 
+     lc_dilithium_65_poly_basemul_8l_acc_rv64im lc_dilithium_65_poly_basemul_8l_init_rv64im lc_dilithium_65_poly_basemul_8l_rv64im 
+     lc_dilithium_65_poly_reduce_rv64im lc_dilithium_87_intt_8l_rv64im lc_dilithium_87_ntt_8l_rv64im lc_dilithium_87_poly_basemul_8l_acc_end_rv64im 
+     lc_dilithium_87_poly_basemul_8l_acc_rv64im lc_dilithium_87_poly_basemul_8l_init_rv64im lc_dilithium_87_poly_basemul_8l_rv64im 
+     lc_dilithium_87_poly_reduce_rv64im sha3_256_riscv_asm_init.lto_priv.0 sha3_256_selftest_common sha3_512_riscv_asm_init.lto_priv.0 
+     sha3_512_riscv_asm_init_nocheck.lto_priv.0 shake_128_riscv_asm_init.lto_priv.0 shake_128_riscv_asm_init_nocheck.lto_priv.0 shake_256_riscv_asm_init.lto_priv.0 
+     shake_256_riscv_asm_init_nocheck.lto_priv.0 
+## riscv64 · "c" · max · qemu-riscv64 -cpu max
+leancrypto 1.9.1 riscv64 c max ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 c max ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 c max ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+   (repeated with lc_kyber_enc and the internal generator, accept/reject only:)
+leancrypto 1.9.1 riscv64 c max ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 c max ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 c max ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 riscv64 c max [ctx] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 c max [ctx] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 c max [ctx] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 c max [simple] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 c max [simple] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 c max [simple] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 c max [stream] ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 c max [stream] ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 riscv64 c max [stream] ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+   errors or warnings on stderr: 
+   rejection traces from the library by source file:
+         630 Error -22 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+          12 Error -22 at ../ml-kem/src/kyber_api.c
+         672 Error -22 at ../ml-kem/src/kyber_indcpa.c
+         672 Error -22 at ../ml-kem/src/kyber_kem.c
+        1038 Error -74 at ../ml-dsa/src/dilithium_signature_sigver_impl.h
+   architecture-specific functions executed (qemu -d in_asm), 6 distinct:
+     keccak_absorb.lto_priv.0 keccak_squeeze.lto_priv.0 keccakp_1600 sha3_256_init.lto_priv.0 sha3_512_init.lto_priv.0 sha3_512_init_nocheck.lto_priv.0 
+
+########## zig
+== Zig 0.17.1 (ziglang.org tarball, sha256 3581863e3cbcfd0fce0efc682ce7e9e93da96668a977791d356a26d2a7e9b17a, checked against index.json)
+#### Zig 0.17.1, ReleaseSafe, -target aarch64-linux -mcpu=baseline, run with: qemu-aarch64 -cpu max
+   (exit code 0)
+== Zig 0.17.1, aarch64, mode safe
+Zig std ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-DSA-44    vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-65    vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-87    vectors=241   INVALID ACCEPTED=0   valid rejected=0
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+   vector instructions in the binary: 1967
+   in the 72 executed functions: 1158 vector instructions; in the 41 of ml_kem/ml_dsa/keccak: 402 (code inlined into wycheproof.zig counts separately)
+#### Zig 0.17.1, ReleaseSafe, -target riscv64-linux -mcpu=baseline, run with: qemu-riscv64 -cpu max
+   (exit code 0)
+== Zig 0.17.1, riscv64, mode safe
+Zig std ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-DSA-44    vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-65    vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-87    vectors=241   INVALID ACCEPTED=0   valid rejected=0
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+   vector instructions in the binary: 0
+   in the 72 executed functions: 0 vector instructions; in the 43 of ml_kem/ml_dsa/keccak: 0 (code inlined into wycheproof.zig counts separately)
+#### Zig 0.17.1, ReleaseSafe, -target riscv64-linux -mcpu=baseline+v, run with: qemu-riscv64 -cpu max
+   (exit code 0)
+== Zig 0.17.1, riscv64, mode safe
+Zig std ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-DSA-44    vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-65    vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-87    vectors=241   INVALID ACCEPTED=0   valid rejected=0
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+   vector instructions in the binary: 7056
+   in the 74 executed functions: 2700 vector instructions; in the 43 of ml_kem/ml_dsa/keccak: 1025 (code inlined into wycheproof.zig counts separately)
+#### Zig 0.17.1, ReleaseSafe, -target s390x-linux -mcpu=baseline, run with: qemu-s390x -cpu max
+   (exit code 0)
+== Zig 0.17.1, s390x, mode safe
+Zig std ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-DSA-44    vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-65    vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-87    vectors=241   INVALID ACCEPTED=0   valid rejected=0
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+   vector instructions in the binary: 5219
+   in the 55 executed functions: 3219 vector instructions; in the 26 of ml_kem/ml_dsa/keccak: 854 (code inlined into wycheproof.zig counts separately)
+#### Zig 0.17.1, ReleaseSafe, -target s390x-linux -mcpu=z10, run with: qemu-s390x -cpu max
+   (exit code 0)
+== Zig 0.17.1, s390x, mode safe
+Zig std ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-DSA-44    vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-65    vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-87    vectors=241   INVALID ACCEPTED=0   valid rejected=0
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+   vector instructions in the binary: 0
+   in the 54 executed functions: 0 vector instructions; in the 26 of ml_kem/ml_dsa/keccak: 0 (code inlined into wycheproof.zig counts separately)

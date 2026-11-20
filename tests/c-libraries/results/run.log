@@ -1,0 +1,158 @@
+$ ./run.sh libsodium nettle
+Wycheproof 65ca494727a5
+Machine: Linux 6.8.0-1070-azure x86_64; gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Note: in ML-KEM, the "seed" lines whose seed is not 64 bytes long (20 per parameter set) are rejected by the
+harness itself without calling the library.
+
+########## libsodium
+== libsodium 1.0.22  (sha256 adbdd8f16149e81ac6078a03aca6fc03b592b89ef7b5ed83841c086191be3349)
+libsodium 1.0.22               ML-KEM-768  | seed: 181 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 245 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 5 vectors, INVALID ACCEPTED=2, valid fails=0
+      1   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+      1   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+      1     (libsodium: 44 vectors with a length other than the fixed one; the interface takes no other length: no interface)
+
+########## Nettle, development branch
+== nettle, master branch, commit 10d33c60c1c797c5ac4adb36e22294a91174fcd9 (Sun Nov 15 16:11:06 2026 +0100)
+   Assembly files:    x86_64/fat x86_64
+nettle master 10d33c60         ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: no interface | expanded dk: no interface
+nettle master 10d33c60         ML-KEM-768  | seed: 181 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 245 vectors, INVALID ACCEPTED=112, valid fails=0 | expanded dk: 5 vectors, INVALID ACCEPTED=2, valid fails=0
+nettle master 10d33c60         ML-KEM-1024 | seed: 182 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 249 vectors, INVALID ACCEPTED=116, valid fails=0 | expanded dk: 5 vectors, INVALID ACCEPTED=2, valid fails=0
+    200   INVALID ACCEPTED  [encaps]   Public key not reduced
+     28   INVALID ACCEPTED  [encaps]   ModulusOverflow
+      2   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+      2   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+      2     (nettle: 44 vectors with a length other than the fixed one: no interface)
+
+$ ./run.sh leancrypto
+Wycheproof 65ca494727a5
+Machine: Linux 6.8.0-1070-azure x86_64; gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Note: in ML-KEM, the "seed" lines whose seed is not 64 bytes long (20 per parameter set) are rejected by the
+harness itself without calling the library.
+
+########## leancrypto
+== leancrypto 1.9.1  (tag v1.9.1; sha256 of the tarball c3fe73e0e164d69e8c88c64b1649513f8e4f41c2f541614a9c4298f6368aa194)
+#### build "def" (options: -Ddefault_library=static -Dapps=disabled)
+/usr/bin/ld: warning: kyber_shuffle_avx2.S.o: missing .note.GNU-stack section implies executable stack
+/usr/bin/ld: NOTE: This behaviour is deprecated and will be removed in a future version of the linker
+/usr/bin/ld: warning: dilithium_shuffle_avx2.S.o: missing .note.GNU-stack section implies executable stack
+/usr/bin/ld: NOTE: This behaviour is deprecated and will be removed in a future version of the linker
+leancrypto 1.9.1 def           ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 def           ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 def           ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+   (repeated with lc_kyber_enc and the internal generator, accept/reject only:)
+leancrypto 1.9.1 def           ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 def           ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 def           ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 def [ctx]         ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 def [ctx]         ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 def [ctx]         ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 def [simple]      ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 def [simple]      ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 def [simple]      ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 def [stream]      ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 def [stream]      ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 def [stream]      ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+   rejection traces from the library by source file (shows which implementation ran):
+          30 Error -22 at ml-dsa/src/avx2/dilithium_signature_sigver_avx2.c
+         168 Error -22 at ml-dsa/src/dilithium_signature_sigver_impl.h
+         456 Error -22 at ml-kem/src/avx2/kyber_indcpa_avx2.c
+          12 Error -22 at ml-kem/src/kyber_api.c
+         216 Error -22 at ml-kem/src/kyber_indcpa.c
+         672 Error -22 at ml-kem/src/kyber_kem.c
+         399 Error -74 at ml-dsa/src/avx2/dilithium_signature_sigver_avx2.c
+         240 Error -74 at ml-dsa/src/dilithium_signature_sigver_impl.h
+#### build "c" (options: -Ddefault_library=static -Dapps=disabled -Ddisable-asm=true)
+leancrypto 1.9.1 c             ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 c             ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 c             ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+   (repeated with lc_kyber_enc and the internal generator, accept/reject only:)
+leancrypto 1.9.1 c             ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 c             ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 c             ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+leancrypto 1.9.1 c [ctx]           ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 c [ctx]           ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 c [ctx]           ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 c [simple]        ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 c [simple]        ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 c [simple]        ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 c [stream]        ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 c [stream]        ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+leancrypto 1.9.1 c [stream]        ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+   rejection traces from the library by source file (shows which implementation ran):
+         630 Error -22 at ml-dsa/src/dilithium_signature_sigver_impl.h
+          12 Error -22 at ml-kem/src/kyber_api.c
+         672 Error -22 at ml-kem/src/kyber_indcpa.c
+         672 Error -22 at ml-kem/src/kyber_kem.c
+        1038 Error -74 at ml-dsa/src/dilithium_signature_sigver_impl.h
+
+$ ./run.sh linux strongswan
+Wycheproof 65ca494727a5
+Machine: Linux 6.8.0-1070-azure x86_64; gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Note: in ML-KEM, the "seed" lines whose seed is not 64 bytes long (20 per parameter set) are rejected by the
+harness itself without calling the library.
+
+########## Linux kernel, lib/crypto/mldsa.c
+== Linux kernel v7.3.5 (git.kernel.org stable, tag v7.3.5)
+   71daa5200c7b57cc792d84229c0dfee64d22d5ebd36be72471d91a4566781b32  lib/crypto/mldsa.c
+   1cc8d2b1f21c87ab49cfc14c956f6474464ac25dd8fddf4645c689ec45dda2f8  include/crypto/mldsa.h
+   c0bdb8f7ecf196a93528ea7a138b5ac0a3ee75ad8578bc771bb5c32c27145a14  lib/crypto/sha3.c
+   e6eda2e4f130f75ef599af86c2cae1e9d61a27cf8a9c7f848b59c807f47dd010  include/crypto/sha3.h
+   d8644d7047b67c7ea1cb0a2dddc5f2773099bd5e8f08586bc3be3db37ed81088  lib/crypto/fips-mldsa.h
+   9a916cb0923931c30fbbca345bc8e453c42d55216558124ce544752e94db4693  lib/crypto/fips-sha.h
+   (O2) check of the kernel SHA-3/SHAKE against hashlib: 272 comparisons, 0 different
+linux v7.3.5 mldsa.c (O2)          ML-DSA-44  vectors=173   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.3.5 mldsa.c (O2)          ML-DSA-65  vectors=203   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.3.5 mldsa.c (O2)          ML-DSA-87  vectors=234   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+   (asan) check of the kernel SHA-3/SHAKE against hashlib: 272 comparisons, 0 different
+linux v7.3.5 mldsa.c (asan)        ML-DSA-44  vectors=173   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.3.5 mldsa.c (asan)        ML-DSA-65  vectors=203   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.3.5 mldsa.c (asan)        ML-DSA-87  vectors=234   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+== Linux kernel v7.0 (git.kernel.org stable, tag v7.0)
+   9363be49a10ee100003f30a93e2a0b6837b6902345f8bee458f537d1d93218a8  lib/crypto/mldsa.c
+   7ed9e15bde67c45a0e21f6c2bb3377d7484d773d394bd539a02d1c6a204a7e75  include/crypto/mldsa.h
+   a8663a91a3efdcbe6a18f078de3cd07a568b921ee13b0925e97ab5f239aeb228  lib/crypto/sha3.c
+   e6eda2e4f130f75ef599af86c2cae1e9d61a27cf8a9c7f848b59c807f47dd010  include/crypto/sha3.h
+   d8644d7047b67c7ea1cb0a2dddc5f2773099bd5e8f08586bc3be3db37ed81088  lib/crypto/fips-mldsa.h
+   e42b9bd2dad9a4b5f702fad4abe1208c35c68fd22401a9dd5a06eefd3f9d6708  lib/crypto/fips.h
+   (O2) check of the kernel SHA-3/SHAKE against hashlib: 272 comparisons, 0 different
+linux v7.0 mldsa.c (O2)            ML-DSA-44  vectors=173   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.0 mldsa.c (O2)            ML-DSA-65  vectors=203   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.0 mldsa.c (O2)            ML-DSA-87  vectors=234   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+   (asan) check of the kernel SHA-3/SHAKE against hashlib: 272 comparisons, 0 different
+linux v7.0 mldsa.c (asan)          ML-DSA-44  vectors=173   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.0 mldsa.c (asan)          ML-DSA-65  vectors=203   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.0 mldsa.c (asan)          ML-DSA-87  vectors=234   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+== Linux kernel v7.4-rc3 (git.kernel.org stable, tag v7.4-rc3)
+   71daa5200c7b57cc792d84229c0dfee64d22d5ebd36be72471d91a4566781b32  lib/crypto/mldsa.c
+   1cc8d2b1f21c87ab49cfc14c956f6474464ac25dd8fddf4645c689ec45dda2f8  include/crypto/mldsa.h
+   c0bdb8f7ecf196a93528ea7a138b5ac0a3ee75ad8578bc771bb5c32c27145a14  lib/crypto/sha3.c
+   e6eda2e4f130f75ef599af86c2cae1e9d61a27cf8a9c7f848b59c807f47dd010  include/crypto/sha3.h
+   d8644d7047b67c7ea1cb0a2dddc5f2773099bd5e8f08586bc3be3db37ed81088  lib/crypto/fips-mldsa.h
+   9a916cb0923931c30fbbca345bc8e453c42d55216558124ce544752e94db4693  lib/crypto/fips-sha.h
+   (O2) check of the kernel SHA-3/SHAKE against hashlib: 272 comparisons, 0 different
+linux v7.4-rc3 mldsa.c (O2)        ML-DSA-44  vectors=173   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.4-rc3 mldsa.c (O2)        ML-DSA-65  vectors=203   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.4-rc3 mldsa.c (O2)        ML-DSA-87  vectors=234   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+   (asan) check of the kernel SHA-3/SHAKE against hashlib: 272 comparisons, 0 different
+linux v7.4-rc3 mldsa.c (asan)      ML-DSA-44  vectors=173   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.4-rc3 mldsa.c (asan)      ML-DSA-65  vectors=203   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+linux v7.4-rc3 mldsa.c (asan)      ML-DSA-87  vectors=234   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+   diff mldsa.c v7.3.5 -> v7.0: 14 lines changed
+   diff mldsa.c v7.3.5 -> v7.4-rc3: identical
+
+########## strongSwan, ml plugin
+== strongSwan 6.1.0  (sha256 fe6c97481298767213cfc2e9a1da29fdd8018d481ff4cb9cf0283099654f20d4)
+strongswan ML-KEM-512: round trip (generate, encapsulate, decapsulate) with equal secrets: 20 of 20
+strongswan 6.1.0 ml            ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+strongswan ML-KEM-768: round trip (generate, encapsulate, decapsulate) with equal secrets: 20 of 20
+strongswan 6.1.0 ml            ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+strongswan ML-KEM-1024: round trip (generate, encapsulate, decapsulate) with equal secrets: 20 of 20
+strongswan 6.1.0 ml            ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+   library messages (stderr), grouped:
+         116 ML_KEM_1024 public key encoding invalid
+         108 ML_KEM_512 public key encoding invalid
+         112 ML_KEM_768 public key encoding invalid
+          20 wrong ML_KEM_1024 public key size of N bytes, N bytes expected
+          20 wrong ML_KEM_512 public key size of N bytes, N bytes expected
+          20 wrong ML_KEM_768 public key size of N bytes, N bytes expected
+

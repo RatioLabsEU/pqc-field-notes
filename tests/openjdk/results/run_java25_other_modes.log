@@ -1,0 +1,33 @@
+Wycheproof 65ca494727a5
+#### Java 25, default flags, 40 rounds so that the JIT compiler kicks in  ()
+== OpenJDK 25.0.5.1+2-LTS (OpenJDK 64-Bit Server VM, amd64), rounds=40
+OpenJDK ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-DSA-44    vectors=173 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-65    vectors=203 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-87    vectors=234 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+#### Java 25, everything compiled from the start  (-Xcomp)
+== OpenJDK 25.0.5.1+2-LTS (OpenJDK 64-Bit Server VM, amd64), rounds=2
+OpenJDK ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-DSA-44    vectors=173 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-65    vectors=203 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-87    vectors=234 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+#### Java 25, no AVX-512  (-XX:UseAVX=2)
+== OpenJDK 25.0.5.1+2-LTS (OpenJDK 64-Bit Server VM, amd64), rounds=40
+OpenJDK ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-DSA-44    vectors=173 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-65    vectors=203 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-87    vectors=234 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+#### Java 25, no AVX  (-XX:UseAVX=0)
+== OpenJDK 25.0.5.1+2-LTS (OpenJDK 64-Bit Server VM, amd64), rounds=40
+OpenJDK ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-DSA-44    vectors=173 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-65    vectors=203 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-87    vectors=234 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0

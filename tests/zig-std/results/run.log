@@ -1,0 +1,25 @@
+$ ./run.sh 0.17.1 0.16.0
+Wycheproof 65ca494727a5
+== Zig 0.17.1 (ziglang.org tarball, sha256 3581863e3cbcfd0fce0efc682ce7e9e93da96668a977791d356a26d2a7e9b17a, checked against index.json)
+#### Zig 0.17.1, ReleaseSafe, cpu=native
+== Zig 0.17.1, x86_64, mode safe
+Zig std ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-DSA-44    vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-65    vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-87    vectors=241   INVALID ACCEPTED=0   valid rejected=0
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+== Zig 0.16.0 (ziglang.org tarball, sha256 70e49664a74374b48b51e6f3fdfbf437f6395d42509050588bd49abe52ba3d00, checked against index.json)
+#### Zig 0.16.0, ReleaseSafe, cpu=native
+== Zig 0.16.0, x86_64, mode ReleaseSafe
+Zig std ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=2 failed=0
+Zig std ML-DSA-44    vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-65    vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Zig std ML-DSA-87    vectors=241   INVALID ACCEPTED=0   valid rejected=0
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+      3   INVALID ACCEPTED  [expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+

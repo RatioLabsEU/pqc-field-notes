@@ -1,0 +1,211 @@
+Wycheproof 65ca494727a5
+
+########## arm
+== PQClean 0586a824fc0d, ML-DSA aarch64 on aarch64, emulated
+PQCLEAN_MLDSA44_AARCH64    vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+PQCLEAN_MLDSA65_AARCH64    vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+PQCLEAN_MLDSA87_AARCH64    vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+== liboqs 0.12.0 (f4b96220e4bd), aarch64, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=214 (valid 70, invalid 144, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+   (no fixed-randomness functions: only acceptance of keys and the expanded decapsulation key)
+liboqs 0.12.0                  ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=108, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+liboqs 0.12.0                  ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=112, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+liboqs 0.12.0                  ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=116, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+== liboqs 0.13.0 (21b3f8b0fadb), aarch64, distribution build, emulated
+   variants built: KEM_ml_kem_512_aarch64 KEM_ml_kem_768_aarch64 KEM_ml_kem_1024_aarch64 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+   (no fixed-randomness functions: only acceptance of keys and the expanded decapsulation key)
+liboqs 0.13.0                  ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.13.0                  ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.13.0                  ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.14.0 (94b421ebb824), aarch64, distribution build, emulated
+   variants built: KEM_ml_kem_512_aarch64 KEM_ml_kem_768_aarch64 KEM_ml_kem_1024_aarch64 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+   (no fixed-randomness functions: only acceptance of keys and the expanded decapsulation key)
+liboqs 0.14.0                  ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.14.0                  ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.14.0                  ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.15.0 (97f6b86b1b6d), aarch64, distribution build, emulated
+   variants built: KEM_ml_kem_512_aarch64 KEM_ml_kem_768_aarch64 KEM_ml_kem_1024_aarch64 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+liboqs 0.15.0                  ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.15.0                  ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.15.0                  ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.16.0 (5a1a854b0dc9), aarch64, distribution build, emulated
+   variants built: KEM_ml_kem_512_aarch64 KEM_ml_kem_768_aarch64 KEM_ml_kem_1024_aarch64 SIG_ml_dsa_44_aarch64 SIG_ml_dsa_65_aarch64 SIG_ml_dsa_87_aarch64 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+liboqs 0.16.0                  ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+########## cross
+######## riscv64
+== PQClean 0586a824fc0d, ML-DSA clean on riscv64, emulated
+PQCLEAN_MLDSA44_CLEAN      vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+PQCLEAN_MLDSA65_CLEAN      vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+PQCLEAN_MLDSA87_CLEAN      vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+== liboqs 0.12.0 (f4b96220e4bd), riscv64, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+   (no fixed-randomness functions: only acceptance of keys and the expanded decapsulation key)
+liboqs 0.12.0                  ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=108, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+liboqs 0.12.0                  ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=112, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+liboqs 0.12.0                  ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=116, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+== liboqs 0.13.0 (21b3f8b0fadb), riscv64, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+   (no fixed-randomness functions: only acceptance of keys and the expanded decapsulation key)
+liboqs 0.13.0                  ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.13.0                  ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.13.0                  ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.14.0 (94b421ebb824), riscv64, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+   (no fixed-randomness functions: only acceptance of keys and the expanded decapsulation key)
+liboqs 0.14.0                  ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.14.0                  ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.14.0                  ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.15.0 (97f6b86b1b6d), riscv64, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+liboqs 0.15.0                  ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.15.0                  ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.15.0                  ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.16.0 (5a1a854b0dc9), riscv64, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+liboqs 0.16.0                  ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+######## s390x
+== PQClean 0586a824fc0d, ML-DSA clean on s390x, emulated
+PQCLEAN_MLDSA44_CLEAN      vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+PQCLEAN_MLDSA65_CLEAN      vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+PQCLEAN_MLDSA87_CLEAN      vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+== liboqs 0.12.0 (f4b96220e4bd), s390x, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+   (no fixed-randomness functions: only acceptance of keys and the expanded decapsulation key)
+liboqs 0.12.0                  ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=108, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+liboqs 0.12.0                  ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=112, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+liboqs 0.12.0                  ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=116, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+== liboqs 0.13.0 (21b3f8b0fadb), s390x, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+   (no fixed-randomness functions: only acceptance of keys and the expanded decapsulation key)
+liboqs 0.13.0                  ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.13.0                  ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.13.0                  ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.14.0 (94b421ebb824), s390x, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+   (no fixed-randomness functions: only acceptance of keys and the expanded decapsulation key)
+liboqs 0.14.0                  ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.14.0                  ML-KEM-768  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.14.0                  ML-KEM-1024 | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.15.0 (97f6b86b1b6d), s390x, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+liboqs 0.15.0                  ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.15.0                  ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.15.0                  ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.16.0 (5a1a854b0dc9), s390x, distribution build, emulated
+   variants built: 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+liboqs 0.16.0                  ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+########## rust-arm
+== wycheproof-mldsa for aarch64-unknown-linux-gnu, rustc 1.100.0 (0ef1bc386 2026-11-09)
+   name = "libcrux-ml-dsa"
+   version = "0.0.12"
+   source = "git+https://github.com/cryspen/libcrux?rev=24330863b3d1d4179e4bcea8cef6bf6fa313057e#24330863b3d1d4179e4bcea8cef6bf6fa313057e"
+   name = "ml-dsa"
+   version = "0.1.2"
+   source = "git+https://github.com/RustCrypto/signatures?rev=8d3230a534530dea0d7657cfc591418490a141ff#8d3230a534530dea0d7657cfc591418490a141ff"
+RustCrypto ml-dsa ML-DSA-44        vectors=180   INVALID ACCEPTED=0   valid rejected=0
+RustCrypto ml-dsa ML-DSA-65        vectors=210   INVALID ACCEPTED=0   valid rejected=0
+RustCrypto ml-dsa ML-DSA-87        vectors=241   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-44 (auto)           vectors=180   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-65 (auto)           vectors=210   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-87 (auto)           vectors=241   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-44 (portable)       vectors=180   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-65 (portable)       vectors=210   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-87 (portable)       vectors=241   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-44 (neon)           vectors=180   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-65 (neon)           vectors=210   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-87 (neon)           vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== wycheproof-mlkem for aarch64-unknown-linux-gnu, rustc 1.100.0 (0ef1bc386 2026-11-09)
+   name = "libcrux-ml-kem"
+   version = "0.0.12"
+   source = "git+https://github.com/cryspen/libcrux?rev=24330863b3d1d4179e4bcea8cef6bf6fa313057e#24330863b3d1d4179e4bcea8cef6bf6fa313057e"
+   name = "ml-kem"
+   version = "0.3.4"
+   source = "git+https://github.com/RustCrypto/KEMs?rev=b26db85a9b44e532a0167333ce34743b6886e22c#b26db85a9b44e532a0167333ce34743b6886e22c"
+RustCrypto ML-KEM-512          | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+RustCrypto ML-KEM-768          | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+RustCrypto ML-KEM-1024         | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+libcrux ML-KEM-512 (auto)      | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-768 (auto)      | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-1024 (auto)     | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-512 (portable)  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-768 (portable)  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-1024 (portable) | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-512 (neon)      | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-768 (neon)      | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-1024 (neon)     | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+########## big-arm
+== OpenSSL 354f1cf64842, linux-aarch64 with assembly, emulated
+OpenSSL                        ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                            ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== AWS-LC 784feabf5fe3, aarch64 with assembly, emulated
+AWS-LC                         ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                             ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== BoringSSL 12cb59022ae9, aarch64 with assembly, emulated
+BoringSSL                      ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: no interface | expanded dk: no interface
+BoringSSL                      ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                      ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                          ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0

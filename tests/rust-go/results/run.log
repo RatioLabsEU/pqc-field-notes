@@ -1,0 +1,155 @@
+$ ./run.sh gmsm k2so tink diag-gmsm
+#### Wycheproof 65ca494727a5, x86_64, 2 cores, CPU: avx2 avx512f 
+#### go version go1.27.3 linux/amd64
+https://proxy.golang.org,direct
+github.com/emmansun/gmsm v0.45.4 h1:8JGSr/aos2cnU75keyXgKV9Vri633y0522jlvR4Qa78=
+github.com/emmansun/gmsm v0.45.4/go.mod h1:1wuVNp9NKEbJxv9bwHFgQdhv62ztAnUIiDqR8uvMau4=
+github.com/symbolicsoft/kyber-k2so v1.1.1 h1:+v31SzZ+xOYyYwiei3pGgT9NULe2bq9YEQo9BxPwbOo=
+github.com/symbolicsoft/kyber-k2so v1.1.1/go.mod h1:SQsJCrIa8wMFN+AnyIJPpAHP+FskAU4fJHzYI1E7neE=
+github.com/tink-crypto/tink-go/v2 v2.9.0 h1:uvjgS1IYDB4zhDK0Zow8ZFB73IjzMAoSqW0JkFnvkrc=
+github.com/tink-crypto/tink-go/v2 v2.9.0/go.mod h1:aNXZeyxjQU9iqAeARRNmbESXUW6Mao1HRCCTY8B1TFM=
+== gmsm v0.45.4, Go go1.27.3 amd64, variant=assembly
+gmsm ML-KEM-512 (assembly)         | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (assembly)         | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (assembly)        | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (assembly)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+== gmsm v0.45.4, Go go1.27.3 amd64, variant=purego
+gmsm ML-KEM-512 (purego)           | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-768 (purego)           | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-KEM-1024 (purego)          | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+gmsm ML-DSA-44 (purego)            vectors=180   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-65 (purego)            vectors=210   INVALID ACCEPTED=0   valid rejected=3
+gmsm ML-DSA-87 (purego)            vectors=241   INVALID ACCEPTED=0   valid rejected=3
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-87 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-65 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value q-1 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT samples the value 0 during matrix A expansion BoundaryCondition
+      1   valid rejected    [gmsm ML-DSA-44 (purego)]   sampleNTT encounters the value q (rejected) during matrix A expansion BoundaryCondition
+== kyber-k2so v1.1.1, Go go1.27.3 amd64
+kyber-k2so ML-KEM-512              | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+kyber-k2so ML-KEM-768              | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+kyber-k2so ML-KEM-1024             | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== tink-go v2.9.0 signature/mldsa, Go go1.27.3 amd64
+tink-go ML-DSA-44                  vectors=173   INVALID ACCEPTED=0   valid rejected=0   no interface=7
+tink-go ML-DSA-65                  vectors=203   INVALID ACCEPTED=0   valid rejected=0   no interface=7
+tink-go ML-DSA-87                  vectors=234   INVALID ACCEPTED=0   valid rejected=0   no interface=7
+== diagnosis: empty-message checks left in the copy (only the signing ones should remain):
+gmsm/mldsa/mldsa44.go:532:	if len(message) == 0 {
+gmsm/mldsa/mldsa44.go-533-		return nil, errors.New("mldsa: empty message")
+--
+gmsm/mldsa/mldsa65.go:448:	if len(message) == 0 {
+gmsm/mldsa/mldsa65.go-449-		return nil, errors.New("mldsa: empty message")
+--
+gmsm/mldsa/mldsa87.go:448:	if len(message) == 0 {
+gmsm/mldsa/mldsa87.go-449-		return nil, errors.New("mldsa: empty message")
+== gmsm v0.45.4 WITHOUT the empty-message check in verification 
+== gmsm v0.45.4, Go go1.27.3 amd64, variant=assembly
+gmsm ML-DSA-44 (assembly)          vectors=180   INVALID ACCEPTED=0   valid rejected=0
+gmsm ML-DSA-65 (assembly)          vectors=210   INVALID ACCEPTED=0   valid rejected=0
+gmsm ML-DSA-87 (assembly)          vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== gmsm v0.45.4 WITHOUT the empty-message check in verification (-tags purego)
+== gmsm v0.45.4, Go go1.27.3 amd64, variant=purego
+gmsm ML-DSA-44 (purego)            vectors=180   INVALID ACCEPTED=0   valid rejected=0
+gmsm ML-DSA-65 (purego)            vectors=210   INVALID ACCEPTED=0   valid rejected=0
+gmsm ML-DSA-87 (purego)            vectors=241   INVALID ACCEPTED=0   valid rejected=0
+
+$ ./run.sh cryptoxide purecrypto macula
+#### Wycheproof 65ca494727a5, x86_64, 2 cores, CPU: avx2 avx512f 
+#### Rust 1.100.0, test crate rust/cryptoxide
+## profile release
+== cryptoxide 0.6.7 (crates.io), x86_64
+cryptoxide ML-KEM-512              | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+cryptoxide ML-KEM-768              | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+cryptoxide ML-KEM-1024             | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+cryptoxide ML-DSA-44               vectors=180   INVALID ACCEPTED=0   valid rejected=0
+cryptoxide ML-DSA-65               vectors=210   INVALID ACCEPTED=0   valid rejected=0
+cryptoxide ML-DSA-87               vectors=241   INVALID ACCEPTED=0   valid rejected=0
+## profile debug
+== cryptoxide 0.6.7 (crates.io), x86_64
+cryptoxide ML-KEM-512              | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+cryptoxide ML-KEM-768              | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+cryptoxide ML-KEM-1024             | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+cryptoxide ML-DSA-44               vectors=180   INVALID ACCEPTED=0   valid rejected=0
+cryptoxide ML-DSA-65               vectors=210   INVALID ACCEPTED=0   valid rejected=0
+cryptoxide ML-DSA-87               vectors=241   INVALID ACCEPTED=0   valid rejected=0
+wycheproof-cryptoxide v0.1.0 (rust/cryptoxide)
+└── cryptoxide v0.6.7
+   "cryptoxide" version = "0.6.7" checksum = "19f700a42beeaab09edbc57140591aaa0b889283c806e88fd81be2d37742014d"
+#### Rust 1.100.0, test crate rust/purecrypto
+## profile release
+== purecrypto 0.10.6 (crates.io), x86_64
+purecrypto ML-KEM-512              | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+purecrypto ML-KEM-768              | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+purecrypto ML-KEM-1024             | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+-- program control: non-validating from_bytes (invalid keys are expected to be accepted)
+CONTROL purecrypto ML-KEM-768      | seed: no interface | encaps: 265 vectors, INVALID ACCEPTED=112, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+-- end of control
+purecrypto ML-DSA-44               vectors=180   INVALID ACCEPTED=0   valid rejected=0
+purecrypto ML-DSA-65               vectors=210   INVALID ACCEPTED=0   valid rejected=0
+purecrypto ML-DSA-87               vectors=241   INVALID ACCEPTED=0   valid rejected=0
+    100   INVALID ACCEPTED  [CONTROL purecrypto ML-KEM-768 · encaps]   Public key not reduced
+     12   INVALID ACCEPTED  [CONTROL purecrypto ML-KEM-768 · encaps]   ModulusOverflow
+      1   INVALID ACCEPTED  [CONTROL purecrypto ML-KEM-768 · expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+      1   INVALID ACCEPTED  [CONTROL purecrypto ML-KEM-768 · expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+## profile debug
+== purecrypto 0.10.6 (crates.io), x86_64
+purecrypto ML-KEM-512              | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+purecrypto ML-KEM-768              | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+purecrypto ML-KEM-1024             | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+-- program control: non-validating from_bytes (invalid keys are expected to be accepted)
+CONTROL purecrypto ML-KEM-768      | seed: no interface | encaps: 265 vectors, INVALID ACCEPTED=112, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, valid fails=0
+-- end of control
+purecrypto ML-DSA-44               vectors=180   INVALID ACCEPTED=0   valid rejected=0
+purecrypto ML-DSA-65               vectors=210   INVALID ACCEPTED=0   valid rejected=0
+purecrypto ML-DSA-87               vectors=241   INVALID ACCEPTED=0   valid rejected=0
+    100   INVALID ACCEPTED  [CONTROL purecrypto ML-KEM-768 · encaps]   Public key not reduced
+     12   INVALID ACCEPTED  [CONTROL purecrypto ML-KEM-768 · encaps]   ModulusOverflow
+      1   INVALID ACCEPTED  [CONTROL purecrypto ML-KEM-768 · expanded dk]   Decapsulation key with corrupted hash InvalidDecapsulationKey
+      1   INVALID ACCEPTED  [CONTROL purecrypto ML-KEM-768 · expanded dk]   Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+wycheproof-purecrypto v0.1.0 (rust/purecrypto)
+└── purecrypto v0.10.6
+   "purecrypto" version = "0.10.6" checksum = "36f943243cf00add6222fc0decfc3a17f37942bd82e8465a9d354eeb13822263"
+#### Rust 1.100.0, test crate rust/macula
+## profile release
+== macula-mlkem 0.3.0 and macula-mldsa 0.3.0 (crates.io), x86_64
+macula ML-KEM-512 (internal)       | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-512 (public only)    | seed: no interface | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-768 (internal)       | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-768 (public only)    | seed: no interface | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-1024 (internal)      | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-1024 (public only)   | seed: no interface | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-DSA-44                   vectors=180   INVALID ACCEPTED=0   valid rejected=0
+macula ML-DSA-65                   vectors=210   INVALID ACCEPTED=0   valid rejected=0
+macula ML-DSA-87                   vectors=241   INVALID ACCEPTED=0   valid rejected=0
+## profile debug
+== macula-mlkem 0.3.0 and macula-mldsa 0.3.0 (crates.io), x86_64
+macula ML-KEM-512 (internal)       | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-512 (public only)    | seed: no interface | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-768 (internal)       | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-768 (public only)    | seed: no interface | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-1024 (internal)      | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-KEM-1024 (public only)   | seed: no interface | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+macula ML-DSA-44                   vectors=180   INVALID ACCEPTED=0   valid rejected=0
+macula ML-DSA-65                   vectors=210   INVALID ACCEPTED=0   valid rejected=0
+macula ML-DSA-87                   vectors=241   INVALID ACCEPTED=0   valid rejected=0
+wycheproof-macula v0.1.0 (rust/macula)
+├── macula-mldsa v0.3.0
+└── macula-mlkem v0.3.0
+   "macula-mldsa" version = "0.3.0" checksum = "e846a49c6be27e4e9abf33a88ac1edcfc4e0c3308e2bdb92f12e101c05856ebb"
+   "macula-mlkem" version = "0.3.0" checksum = "9d1dde77fd0a48f76533836a342cd4c2cf844f63e2d534330b182a52b85b3471"
+

@@ -4,7 +4,7 @@ Notes and reproducible tests from our review of post-quantum cryptography implem
 
 We look for one thing: places where an implementation's behaviour departs from the standard. Our method is variant analysis and differential testing. We take a defect that has already been fixed somewhere, describe it as a pattern, and check whether the same pattern survives in other libraries, in other code paths of the same library, or in copies that were never updated.
 
-Both notes so far say the same thing: a defect was fixed in one place, and releases that are still installed elsewhere never received the fix or an advisory.
+The first two notes say the same thing: a defect was fixed in one place, and releases that are still installed elsewhere never received the fix or an advisory. The later ones look at code that fewer people test: processor-specific paths, and the many independent implementations in language runtimes and package registries.
 
 Every result here comes with the code that produced it.
 
@@ -14,6 +14,9 @@ Every result here comes with the code that produced it.
 |---|---|---|
 | 2026-11 | [ML-DSA: an unfixed AVX2 verifier in liboqs 0.12–0.15, PQClean and two Rust crates](advisories/2026-mldsa-avx2-verifier/) | Two verifier defects fixed upstream in June 2026 are still present in downstream projects that copied the code earlier. Confirmed with the Wycheproof vectors |
 | 2026-11 | [ML-KEM: keys that should be rejected are accepted by liboqs 0.12.0 and pqcrypto-mlkem 0.1.1](advisories/2026-mlkem-input-validation/) | Two packages built on reference ML-KEM code perform none of the FIPS 203 input checks |
+| 2026-11 | [Processor-specific code paths: same vectors, every variant](advisories/2026-processor-paths/) | The same vectors on AVX-512, AVX2, NEON, RISC-V and s390x paths. No new discrepancy; it narrows the earlier notes to x86-64 |
+| 2026-11 | [ML-KEM and ML-DSA outside the large C libraries: 30 implementations](advisories/2026-own-implementations/) | Twenty conform. The others miss an input check or refuse a legitimate edge case, all in current releases and all low severity |
+| 2026-11 | [Zig standard library: ML-KEM decapsulation key import skips the hash check](advisories/2026-zig-mlkem-dk-hash-check/) | `SecretKey.fromBytes` accepts a decapsulation key with an altered hash, in 0.16.0 to current |
 
 ## Tests
 
@@ -21,6 +24,14 @@ Every result here comes with the code that produced it.
 |---|---|
 | [`tests/mldsa-avx2-verifier`](tests/mldsa-avx2-verifier/) | Runs the Wycheproof ML-DSA verification vectors, and signatures with an out-of-bound `z`, against liboqs, PQClean, pqcrypto-mldsa and oqs |
 | [`tests/mlkem-input-validation`](tests/mlkem-input-validation/) | Runs the Wycheproof ML-KEM vectors against liboqs and pqcrypto-mlkem |
+| [`tests/processor-paths`](tests/processor-paths/) | The same vectors on 64-bit ARM, RISC-V and s390x, cross-compiled and run under emulation |
+| [`tests/openjdk`](tests/openjdk/) | OpenJDK 24 to 27, in five execution modes |
+| [`tests/zig-std`](tests/zig-std/) | The Zig standard library |
+| [`tests/c-libraries`](tests/c-libraries/) | libsodium, leancrypto, the Linux kernel ML-DSA verifier, strongSwan and Nettle |
+| [`tests/rust-go`](tests/rust-go/) | Independent Rust and Go implementations |
+| [`tests/python`](tests/python/) | Independent Python packages |
+| [`tests/small-packages`](tests/small-packages/) | Dart, NuGet, npm, Swift and PHP packages |
+| [`tests/other-architectures`](tests/other-architectures/) | Three of the above on ARM, RISC-V, PowerPC, LoongArch and s390x |
 
 ## How this work is done
 

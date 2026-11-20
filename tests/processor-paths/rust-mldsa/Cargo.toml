@@ -1,0 +1,16 @@
+# Copyright 2026 RatioLabs (https://www.ratiolabs.eu). Licensed under the Apache License, Version 2.0.
+[package]
+name = "wycheproof-mldsa"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Development branches at the commits we tested (ml-dsa 0.1.2, libcrux-ml-dsa 0.0.12).
+[dependencies]
+ml-dsa = { git = "https://github.com/RustCrypto/signatures", rev = "8d3230a534530dea0d7657cfc591418490a141ff" }
+
+[target.'cfg(target_arch = "x86_64")'.dependencies]
+libcrux-ml-dsa = { git = "https://github.com/cryspen/libcrux", rev = "24330863b3d1d4179e4bcea8cef6bf6fa313057e", features = ["simd256"] }
+
+[target.'cfg(target_arch = "aarch64")'.dependencies]
+libcrux-ml-dsa = { git = "https://github.com/cryspen/libcrux", rev = "24330863b3d1d4179e4bcea8cef6bf6fa313057e", features = ["simd128"] }

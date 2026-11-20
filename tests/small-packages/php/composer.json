@@ -1,0 +1,13 @@
+{
+    "name": "ratiolabs/wycheproof-small-packages-php",
+    "description": "Wycheproof vectors against paragonie/pqcrypto_compat (pure PHP); pinned version. Copyright 2026 RatioLabs (https://www.ratiolabs.eu). Licensed under the Apache License, Version 2.0.",
+    "license": "Apache-2.0",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "paragonie/pqcrypto_compat": "0.3.4"
+    },
+    "config": {
+        "allow-plugins": false
+    }
+}

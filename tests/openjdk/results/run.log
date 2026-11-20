@@ -1,0 +1,38 @@
+$ MODES=int ./run.sh 25
+Wycheproof 65ca494727a5
+#### Java 25, interpreter only (no accelerated paths)  (-Xint)
+== OpenJDK 25.0.5.1+2-LTS (OpenJDK 64-Bit Server VM, amd64), rounds=1
+OpenJDK ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-DSA-44    vectors=173 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-65    vectors=203 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-87    vectors=234 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+
+$ MODES=int ./run.sh 24 26 27
+Wycheproof 65ca494727a5
+#### Java 24, interpreter only (no accelerated paths)  (-Xint)
+== OpenJDK 24.0.2+12 (OpenJDK 64-Bit Server VM, amd64), rounds=1
+OpenJDK ML-KEM-512   | seed: 20 accepted=0 failed=0 (no interface 180) | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-768   | seed: 20 accepted=0 failed=0 (no interface 181) | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-1024  | seed: 20 accepted=0 failed=0 (no interface 182) | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-DSA-44    vectors=173 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-65    vectors=203 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-87    vectors=234 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+#### Java 26, interpreter only (no accelerated paths)  (-Xint)
+== OpenJDK 26.0.2.1+1 (OpenJDK 64-Bit Server VM, amd64), rounds=1
+OpenJDK ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-DSA-44    vectors=173 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-65    vectors=203 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-87    vectors=234 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+#### Java 27, interpreter only (no accelerated paths)  (-Xint)
+== OpenJDK 27.0.1.1+4 (OpenJDK 64-Bit Server VM, amd64), rounds=1
+OpenJDK ML-KEM-512   | seed: 200 accepted=0 failed=0 | encaps: 261 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-768   | seed: 201 accepted=0 failed=0 | encaps: 265 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-KEM-1024  | seed: 202 accepted=0 failed=0 | encaps: 269 accepted=0 failed=0 | expanded dk: 9 accepted=0 failed=0
+OpenJDK ML-DSA-44    vectors=173 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-65    vectors=203 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+OpenJDK ML-DSA-87    vectors=234 (not applicable 7)   INVALID ACCEPTED=0   valid rejected=0
+
