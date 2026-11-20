@@ -43,7 +43,7 @@ cd tests/mlkem-input-validation
 ./run.sh
 ```
 
-Needs git, python3, cmake, make and gcc; cargo for the `pqcrypto-mlkem` part. Everything is built under `$WORK` (default `~/pqc-lab-work`).
+Needs git, python3, cmake, make and gcc; cargo for the `pqcrypto-mlkem` part. Everything is built under `$WORK` (default `~/pqc-field-notes-work`).
 
 ## What to do
 

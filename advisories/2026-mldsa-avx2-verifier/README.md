@@ -70,7 +70,7 @@ cd tests/mldsa-avx2-verifier
 ./run_pqcrypto.sh   # optional, needs cargo: checks the Rust crates pqcrypto-mldsa 0.1.2 and oqs 0.11.0
 ```
 
-Needs git, cmake, make, gcc, python3 and perl on Linux x86_64 with AVX2. Everything is built under `$WORK` (default `~/pqc-lab-work`); nothing is installed system-wide.
+Needs git, cmake, make, gcc, python3 and perl on Linux x86_64 with AVX2. Everything is built under `$WORK` (default `~/pqc-field-notes-work`); nothing is installed system-wide.
 
 ## Root cause
 

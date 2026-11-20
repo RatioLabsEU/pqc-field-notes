@@ -13,7 +13,7 @@
 set -uo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
-WORK="${WORK:-$HOME/pqc-lab-work}"
+WORK="${WORK:-$HOME/pqc-field-notes-work}"
 WYCHEPROOF_COMMIT=65ca494727a5
 LIBOQS_VERSIONS="0.12.0 0.13.0"
 mkdir -p "$WORK/vectors"

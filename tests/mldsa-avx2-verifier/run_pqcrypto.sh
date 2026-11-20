@@ -7,7 +7,7 @@
 set -uo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
-WORK="${WORK:-$HOME/pqc-lab-work}"
+WORK="${WORK:-$HOME/pqc-field-notes-work}"
 export PATH="$HOME/.cargo/bin:$PATH"
 [ -f "$WORK/vectors/mldsa_65.txt" ] || { echo "run ./run.sh first"; exit 2; }
 export CARGO_TARGET_DIR="$WORK/pqcrypto-check-target"
