@@ -1,4 +1,5 @@
 # Zig standard library: ML-KEM decapsulation key import skips the hash check
+
 ## Summary
 
 `std.crypto.kem.ml_kem` in the Zig standard library implements ML-KEM (FIPS 203). `SecretKey.fromBytes` does not perform the decapsulation key hash check described in FIPS 203 section 7.3: it does not compare the hash stored in the decapsulation key with the hash of the encapsulation key embedded in it. A decapsulation key whose stored hash or embedded encapsulation key has been altered is accepted, and `decaps` returns a shared secret.
