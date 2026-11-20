@@ -1,4 +1,4 @@
-# ML-DSA: an unfixed AVX2 verifier in liboqs 0.12–0.15, PQClean and pqcrypto-mldsa
+# ML-DSA: an unfixed AVX2 verifier in liboqs 0.12–0.15, PQClean and two Rust crates
 
 **Status:** known and fixed upstream (pq-crystals, 3 June 2026). This note documents software that still carries the unfixed code.
 
@@ -9,13 +9,14 @@ The AVX2 implementation of ML-DSA signature verification in the pq-crystals refe
 1. **Missing norm check.** The verifier did not check `||z||∞ < γ1 − β` (FIPS 204, Algorithm 8, line 13). It accepts signatures that a conforming verifier rejects. Upstream issue [pq-crystals/dilithium#113](https://github.com/pq-crystals/dilithium/issues/113), fixed in `d35ba3fe54`.
 2. **`use_hint_avx()` boundary case.** One class of valid signatures is rejected. Fixed in `bba9534a3c`.
 
-Several projects vendored the AVX2 code before those fixes and never picked them up. We confirmed three by running them:
+Several projects vendored the AVX2 code before those fixes and never picked them up. We confirmed four by running them:
 
 | Software | Versions | Affected configuration | Fix available |
 |---|---|---|---|
 | [liboqs](https://github.com/open-quantum-safe/liboqs) | 0.12.0 – 0.15.0 | Default build on x86_64 with AVX2 | Yes: 0.16.0 (replaced the implementation) |
 | [PQClean](https://github.com/PQClean/PQClean) | All (archived August 2026) | `crypto_sign/ml-dsa-*/avx2` | No |
 | [pqcrypto-mldsa](https://crates.io/crates/pqcrypto-mldsa) (Rust) | 0.1.2 | Default `avx2` feature on x86_64 | No (archived) |
+| [oqs](https://crates.io/crates/oqs) (Rust) | 0.11.0, the latest release | Always on x86_64 with AVX2: it builds a bundled liboqs 0.13.0 | No release with liboqs 0.16.0 yet |
 
 In each case the portable implementation shipped alongside is correct. The same library version therefore gives different verification results depending on the CPU.
 
@@ -35,14 +36,15 @@ Linux x86_64, Intel Xeon Platinum 8573C, gcc 13.3, Rust 1.100. Full logs are in 
 
 | Implementation | Build | Invalid vectors accepted (44 / 65 / 87) | Valid vectors rejected (44 / 65 / 87) |
 |---|---|---|---|
-| liboqs 0.15.0 | default (AVX2 selected at run time) | **37 / 41 / 49** | **1 / 1 / 1** |
-| liboqs 0.15.0 | portable | 0 / 0 / 0 | 0 / 0 / 0 |
+| liboqs 0.12.0, 0.13.0, 0.14.0, 0.15.0 | default (AVX2 selected at run time) | **37 / 41 / 49** each | **1 / 1 / 1** each |
+| liboqs 0.12.0, 0.13.0, 0.14.0, 0.15.0 | portable | 0 / 0 / 0 | 0 / 0 / 0 |
 | liboqs 0.16.0 | default | 0 / 0 / 0 | 0 / 0 / 0 |
 | liboqs 0.16.0 | portable | 0 / 0 / 0 | 0 / 0 / 0 |
 | PQClean | avx2 | **37 / 41 / 49** | **1 / 1 / 1** |
 | PQClean | clean | 0 / 0 / 0 | 0 / 0 / 0 |
 | pqcrypto-mldsa 0.1.2 | default features (`avx2`) | **37 / 41 / 49** | **1 / 1 / 1** |
 | pqcrypto-mldsa 0.1.2 | `avx2` feature disabled | 0 / 0 / 0 | 0 / 0 / 0 |
+| oqs 0.11.0 | default | **37 / 41 / 49** | **1 / 1 / 1** |
 
 Every accepted invalid vector is flagged `InfinityNormViolation`. The rejected valid vector is "signature that calls use_hint(1, 0)" (tcId 147, 161, 174).
 
@@ -56,16 +58,16 @@ Twenty signatures per parameter set, produced by a signer patched to emit only s
 |---|---|---|---|
 | PQClean avx2 | **20 of 20 accepted** | **20 of 20** | **20 of 20** |
 | PQClean clean | 0 | 0 | 0 |
-| liboqs 0.15.0, default build | **20 of 20 accepted** | **20 of 20** | **20 of 20** |
-| liboqs 0.15.0, portable | 0 | 0 | 0 |
+| liboqs 0.12.0 – 0.15.0, default build | **20 of 20 accepted** each | **20 of 20** each | **20 of 20** each |
+| liboqs 0.12.0 – 0.15.0, portable | 0 | 0 | 0 |
 | liboqs 0.16.0, default and portable | 0 | 0 | 0 |
 
 ## Reproduce
 
 ```sh
 cd tests/mldsa-avx2-verifier
-./run.sh            # downloads Wycheproof, PQClean and liboqs 0.15.0 / 0.16.0, builds them, prints both tables
-./run_pqcrypto.sh   # optional, needs cargo: checks pqcrypto-mldsa 0.1.2
+./run.sh            # downloads Wycheproof, PQClean and liboqs 0.12.0 – 0.16.0, builds them, prints both tables
+./run_pqcrypto.sh   # optional, needs cargo: checks the Rust crates pqcrypto-mldsa 0.1.2 and oqs 0.11.0
 ```
 
 Needs git, cmake, make, gcc, python3 and perl on Linux x86_64 with AVX2. Everything is built under `$WORK` (default `~/pqc-lab-work`); nothing is installed system-wide.
@@ -80,6 +82,7 @@ In the affected code the verifier unpacks `z` and proceeds under the comment "sh
 ## What to do
 
 - **liboqs:** upgrade to 0.16.0 or later.
+- **oqs (Rust):** 0.11.0 builds liboqs 0.13.0. Until a release bundles 0.16.0, link against a system liboqs 0.16.0 instead of the bundled copy.
 - **PQClean, pqcrypto-mldsa:** both are archived. Move to a maintained implementation, or build without AVX2 (`pqcrypto-mldsa`: disable the `avx2` feature).
 - **Anyone vendoring pq-crystals `avx2` code:** check that your copy includes upstream commits `d35ba3fe54` and `bba9534a3c`. Running the Wycheproof ML-DSA vectors against every optimized code path you ship will tell you.
 
@@ -90,7 +93,7 @@ In the affected code the verifier unpacks `z` and proceeds under the comment "sh
 | 3 June 2026 | Eric Biggers reports the missing norm check to pq-crystals; both defects fixed upstream the same day |
 | 9 July 2026 | liboqs 0.16.0 released with mldsa-native as the ML-DSA implementation |
 | August 2026 | PQClean archived |
-| 19 November 2026 | We confirm the defects in liboqs 0.15.0, PQClean and pqcrypto-mldsa 0.1.2 |
+| 19–20 November 2026 | We confirm the defects in liboqs 0.12.0 to 0.15.0, PQClean, pqcrypto-mldsa 0.1.2 and oqs 0.11.0 |
 
 ## Credit
 

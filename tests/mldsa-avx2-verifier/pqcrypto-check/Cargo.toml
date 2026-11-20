@@ -8,6 +8,8 @@ license = "Apache-2.0"
 [dependencies]
 pqcrypto-mldsa = { version = "=0.1.2", default-features = false, features = ["std"] }
 pqcrypto-traits = "0.3.5"
+# The oqs crate builds its bundled copy of liboqs (0.13.0 for oqs 0.11.0); this needs cmake.
+oqs = { version = "=0.11.0", default-features = false, features = ["std", "ml_dsa", "vendored"] }
 
 [features]
 default = ["avx2"]

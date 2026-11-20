@@ -16,7 +16,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 WORK="${WORK:-$HOME/pqc-lab-work}"
 WYCHEPROOF_COMMIT=65ca494727a5
 PQCLEAN_COMMIT=0586a824fc0d
-LIBOQS_VERSIONS="0.15.0 0.16.0"
+LIBOQS_VERSIONS="0.12.0 0.13.0 0.14.0 0.15.0 0.16.0"
 mkdir -p "$WORK/vectors"
 
 grep -q avx2 /proc/cpuinfo || echo "WARNING: this CPU has no AVX2; the affected code path will not run."
