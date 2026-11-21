@@ -1,0 +1,136 @@
+# pqcrypto-dilithium 0.5.0: AVX2 against clean. 21-11-2026 11:52 UTC
+# Linux 6.8.0-1070-azure x86_64; rustc 1.100.0 (0ef1bc386 2026-11-09); cargo 1.100.0 (3acc79c0c 2026-11-05); gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+# CPU: INTEL(R) XEON(R) PLATINUM 8573C; aes avx2 bmi2 popcnt 
+# crate: $WORK/pqcrypto-dilithium/cargo-home/registry/src/index.crates.io-1949cf8c6b5b557f/pqcrypto-dilithium-0.5.0
+# sha256 of the .crate: 685de0fa68c6786559d5fcdaa414f0cd68ef3f5d162f61823bd7424cd276726f
+# resolved versions (Cargo.lock): "cc 1.11.3 pqcrypto-dilithium 0.5.0 pqcrypto-dilithium-check 0.1.0 pqcrypto-internals 0.2.11 pqcrypto-traits 0.3.5"
+# origin of the C code (META.yml of dilithium3): version: https://github.com/pq-crystals/dilithium/commit/918af1a6eaedcedf9fdd8aaaca6c1fccd5a7a51f
+# in the AVX2 verifier: pqclean/crypto_sign/dilithium2/avx2/sign.c:309:    /* Unpack z; shortness follows from unpacking */
+# in the AVX2 verifier: pqclean/crypto_sign/dilithium3/avx2/sign.c:319:    /* Unpack z; shortness follows from unpacking */
+# in the AVX2 verifier: pqclean/crypto_sign/dilithium5/avx2/sign.c:329:    /* Unpack z; shortness follows from unpacking */
+
+## 1. Inputs (dilithium_generator.c with the crate's C code and the patched clean signer)
+dilithium2: signer patch:
+    151c151
+    <     if (PQCLEAN_DILITHIUM2_CLEAN_polyvecl_chknorm(&z, GAMMA1 - BETA)) {
+    ---
+    >     if (!PQCLEAN_DILITHIUM2_CLEAN_polyvecl_chknorm(&z, GAMMA1 - BETA) || PQCLEAN_DILITHIUM2_CLEAN_polyvecl_chknorm(&z, GAMMA1)) {
+    dilithium2: 20 out-of-bound signatures; accepted by the crate's clean verifier: 0
+    dilithium2: use_hint signatures built and accepted by clean: 2 of 2
+dilithium3: signer patch:
+    151c151
+    <     if (PQCLEAN_DILITHIUM3_CLEAN_polyvecl_chknorm(&z, GAMMA1 - BETA)) {
+    ---
+    >     if (!PQCLEAN_DILITHIUM3_CLEAN_polyvecl_chknorm(&z, GAMMA1 - BETA) || PQCLEAN_DILITHIUM3_CLEAN_polyvecl_chknorm(&z, GAMMA1)) {
+    dilithium3: 20 out-of-bound signatures; accepted by the crate's clean verifier: 0
+    dilithium3: use_hint signatures built and accepted by clean: 2 of 2
+dilithium5: signer patch:
+    151c151
+    <     if (PQCLEAN_DILITHIUM5_CLEAN_polyvecl_chknorm(&z, GAMMA1 - BETA)) {
+    ---
+    >     if (!PQCLEAN_DILITHIUM5_CLEAN_polyvecl_chknorm(&z, GAMMA1 - BETA) || PQCLEAN_DILITHIUM5_CLEAN_polyvecl_chknorm(&z, GAMMA1)) {
+    dilithium5: 20 out-of-bound signatures; accepted by the crate's clean verifier: 0
+    dilithium5: use_hint signatures built and accepted by clean: 2 of 2
+cases: 66 lines; sha256 5b243a463add4c4f
+
+## 2. pqcrypto-dilithium 0.5.0 with the avx2 feature (default): API (selects AVX2 at run time), ffi clean and ffi avx2
+pqcrypto-dilithium 0.5.0; avx2 feature: true; CPU with AVX2: true; the API uses: AVX2
+cases read from $WORK/pqcrypto-dilithium/cases.txt: 66
+dilithium2  control: the crate's keypair + detached_sign               accepted: API 20/20, clean 20/20, avx2 20/20   DISCREPANCIES between paths: 0
+dilithium2  control: the same signature with one byte changed          accepted: API 0/20, clean 0/20, avx2 0/20   DISCREPANCIES between paths: 0
+    DISCREPANCY dilithium2 out_of_bound case 0: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 1: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 2: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 3: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 4: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 5: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 6: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 7: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 8: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 9: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 10: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 11: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 12: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 13: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 14: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 15: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 16: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 17: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 18: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium2 out_of_bound case 19: API=accepts clean=rejects avx2=accepts
+dilithium2  out_of_bound: γ1−β ≤ ‖z‖∞ < γ1 (must be rejected)          accepted: API 20/20, clean 0/20, avx2 20/20   DISCREPANCIES between paths: 20
+    DISCREPANCY dilithium2 use_hint case 0: API=rejects clean=accepts avx2=rejects
+    DISCREPANCY dilithium2 use_hint case 1: API=rejects clean=accepts avx2=rejects
+dilithium2  use_hint: zero pk, UseHint(1, 0) (valid, must be accepted) accepted: API 0/2, clean 2/2, avx2 0/2   DISCREPANCIES between paths: 2
+dilithium3  control: the crate's keypair + detached_sign               accepted: API 20/20, clean 20/20, avx2 20/20   DISCREPANCIES between paths: 0
+dilithium3  control: the same signature with one byte changed          accepted: API 0/20, clean 0/20, avx2 0/20   DISCREPANCIES between paths: 0
+    DISCREPANCY dilithium3 out_of_bound case 0: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 1: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 2: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 3: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 4: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 5: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 6: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 7: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 8: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 9: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 10: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 11: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 12: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 13: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 14: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 15: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 16: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 17: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 18: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium3 out_of_bound case 19: API=accepts clean=rejects avx2=accepts
+dilithium3  out_of_bound: γ1−β ≤ ‖z‖∞ < γ1 (must be rejected)          accepted: API 20/20, clean 0/20, avx2 20/20   DISCREPANCIES between paths: 20
+    DISCREPANCY dilithium3 use_hint case 0: API=rejects clean=accepts avx2=rejects
+    DISCREPANCY dilithium3 use_hint case 1: API=rejects clean=accepts avx2=rejects
+dilithium3  use_hint: zero pk, UseHint(1, 0) (valid, must be accepted) accepted: API 0/2, clean 2/2, avx2 0/2   DISCREPANCIES between paths: 2
+dilithium5  control: the crate's keypair + detached_sign               accepted: API 20/20, clean 20/20, avx2 20/20   DISCREPANCIES between paths: 0
+dilithium5  control: the same signature with one byte changed          accepted: API 0/20, clean 0/20, avx2 0/20   DISCREPANCIES between paths: 0
+    DISCREPANCY dilithium5 out_of_bound case 0: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 1: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 2: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 3: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 4: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 5: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 6: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 7: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 8: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 9: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 10: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 11: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 12: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 13: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 14: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 15: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 16: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 17: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 18: API=accepts clean=rejects avx2=accepts
+    DISCREPANCY dilithium5 out_of_bound case 19: API=accepts clean=rejects avx2=accepts
+dilithium5  out_of_bound: γ1−β ≤ ‖z‖∞ < γ1 (must be rejected)          accepted: API 20/20, clean 0/20, avx2 20/20   DISCREPANCIES between paths: 20
+    DISCREPANCY dilithium5 use_hint case 0: API=rejects clean=accepts avx2=rejects
+    DISCREPANCY dilithium5 use_hint case 1: API=rejects clean=accepts avx2=rejects
+dilithium5  use_hint: zero pk, UseHint(1, 0) (valid, must be accepted) accepted: API 0/2, clean 2/2, avx2 0/2   DISCREPANCIES between paths: 2
+controls correct
+
+## 3. Without the avx2 feature (--no-default-features): the API uses clean
+pqcrypto-dilithium 0.5.0; avx2 feature: false; CPU with AVX2: true; the API uses: clean
+cases read from $WORK/pqcrypto-dilithium/cases.txt: 66
+dilithium2  control: the crate's keypair + detached_sign               accepted: API 20/20, clean 20/20   DISCREPANCIES between paths: 0
+dilithium2  control: the same signature with one byte changed          accepted: API 0/20, clean 0/20   DISCREPANCIES between paths: 0
+dilithium2  out_of_bound: γ1−β ≤ ‖z‖∞ < γ1 (must be rejected)          accepted: API 0/20, clean 0/20   DISCREPANCIES between paths: 0
+dilithium2  use_hint: zero pk, UseHint(1, 0) (valid, must be accepted) accepted: API 2/2, clean 2/2   DISCREPANCIES between paths: 0
+dilithium3  control: the crate's keypair + detached_sign               accepted: API 20/20, clean 20/20   DISCREPANCIES between paths: 0
+dilithium3  control: the same signature with one byte changed          accepted: API 0/20, clean 0/20   DISCREPANCIES between paths: 0
+dilithium3  out_of_bound: γ1−β ≤ ‖z‖∞ < γ1 (must be rejected)          accepted: API 0/20, clean 0/20   DISCREPANCIES between paths: 0
+dilithium3  use_hint: zero pk, UseHint(1, 0) (valid, must be accepted) accepted: API 2/2, clean 2/2   DISCREPANCIES between paths: 0
+dilithium5  control: the crate's keypair + detached_sign               accepted: API 20/20, clean 20/20   DISCREPANCIES between paths: 0
+dilithium5  control: the same signature with one byte changed          accepted: API 0/20, clean 0/20   DISCREPANCIES between paths: 0
+dilithium5  out_of_bound: γ1−β ≤ ‖z‖∞ < γ1 (must be rejected)          accepted: API 0/20, clean 0/20   DISCREPANCIES between paths: 0
+dilithium5  use_hint: zero pk, UseHint(1, 0) (valid, must be accepted) accepted: API 2/2, clean 2/2   DISCREPANCIES between paths: 0
+controls correct
+
+# end: 21-11-2026 11:52 UTC

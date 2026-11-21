@@ -1,0 +1,62 @@
+== sources (21-11-2026 11:47 UTC)
+   libbitcoinpqc fc08c05214d878cd899ce2cfcae43ee71f50981a 2026-11-03 tags: 
+   PQMagic 42f5b6e6fe7e4951ffc9437ecd77c9a5af93ff08 2026-10-29 tags: 
+   btx 074dac167c26c1e091198f691ed5727817dba88a 2026-11-15
+   sphincsplus bas/fips205 ef36d20ff3588324ad69f844507b8217f008f35a 2026-05-13
+== ACVP
+   975de31eb83d87039ec88934fdc47d8c312b892d 2026-08-12 (pinned 975de31eb83d87039ec88934fdc47d8c312b892d); latest on origin/master: 975de31eb83d87039ec88934fdc47d8c312b892d 2026-08-12
+== OpenSSL 354f1cf64842dc03f30a97a3a4fd8a7b48e40807 (our own build)
+   built in $WORK/slhdsa-interop/libs/openssl-src
+   354f1cf64842dc03f30a97a3a4fd8a7b48e40807 2026-11-19
+   sha256 libcrypto.a: 036ba6efa77976b5
+== end of fetch step: 21-11-2026 11:49 UTC
+
+### build step
+== libbitcoinpqc fc08c05214d878cd899ce2cfcae43ee71f50981a 2026-11-03
+   $WORK/slhdsa-interop/build/libbitcoinpqc/lib/libbitcoinpqc.a; secp256k1: $WORK/slhdsa-interop/build/libbitcoinpqc/lib/libsecp256k1.a
+   its own tests (ctest):
+         Start 3: ml_dsa_44_e2e
+     3/4 Test #3: ml_dsa_44_e2e ....................   Passed    0.00 sec
+         Start 4: rng_isolation
+     4/4 Test #4: rng_isolation ....................   Passed    0.65 sec
+     
+     100% tests passed, 0 tests failed out of 4
+     
+     Total Test time (real) =   5.91 sec
+== CONTROL: libbitcoinpqc with fors.c patched to the FIPS 205 order
+   difference from the original:
+     59c59
+     <             indices[i] ^= ((m[offset >> 3] >> (offset & 0x7)) & 1u) << j;
+     ---
+     >             indices[i] ^= ((m[offset >> 3] >> (~offset & 0x7)) & 1u) << (SPX_FORS_HEIGHT-1-j);
+   line in sphincsplus bas/fips205 (reference): 59:            indices[i] ^= ((m[offset >> 3] >> (~offset & 0x7)) & 1u) << (SPX_FORS_HEIGHT-1-j);
+== PQMagic 42f5b6e6fe7e4951ffc9437ecd77c9a5af93ff08 2026-10-29
+   $WORK/slhdsa-interop/build/pqmagic/libpqmagic_std.a
+   -- SLH-DSA (FIPS 205): ENABLED with mode slh-dsa-sha2-128f;slh-dsa-sha2-128s;slh-dsa-sha2-192f;slh-dsa-sha2-192s;slh-dsa-sha2-256f;slh-dsa-sha2-256s;slh-dsa-shake-128f;slh-dsa-shake-128s;slh-dsa-shake-192f;slh-dsa-shake-192s;slh-dsa-shake-256f;slh-dsa-shake-256s
+== btx 074dac167c26c1e091198f691ed5727817dba88a 2026-11-15, src/libbitcoinpqc
+   -- Configuring libbitcoinpqc with SPHINCS+ variant: ref
+   $WORK/slhdsa-interop/build/btx/lib/libbitcoinpqc.a
+== test programs
+   interop_bitcoinpqc
+   acvp_bitcoinpqc
+   interop_control
+   acvp_control
+   interop_pqmagic
+   acvp_pqmagic
+   interop_btx
+   acvp_btx
+   acvp_openssl
+== ACVP vectors (975de31eb83d87039ec88934fdc47d8c312b892d 2026-08-12)
+   SLH-DSA-SHA2-128f    keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHA2-128s    keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHA2-192f    keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHA2-192s    keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHA2-256f    keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHA2-256s    keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHAKE-128f   keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHAKE-128s   keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHAKE-192f   keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHAKE-192s   keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHAKE-256f   keyGen=10 sigGen=52 sigVer=42
+   SLH-DSA-SHAKE-256s   keyGen=10 sigGen=52 sigVer=42
+== end of build step: 21-11-2026 11:50 UTC

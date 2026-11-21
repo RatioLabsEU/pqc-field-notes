@@ -12,17 +12,19 @@ Every result here comes with the code that produced it.
 
 | Date | Note | Summary |
 |---|---|---|
-| 2026-11 | [ML-DSA: an unfixed AVX2 verifier in liboqs 0.12–0.15, PQClean and two Rust crates](advisories/2026-mldsa-avx2-verifier/) | Two verifier defects fixed upstream in June 2026 are still present in downstream projects that copied the code earlier. Confirmed with the Wycheproof vectors |
+| 2026-11 | [ML-DSA: an unfixed AVX2 verifier in liboqs 0.12–0.15, PQClean and three Rust crates](advisories/2026-mldsa-avx2-verifier/) | Two verifier defects fixed upstream in June 2026 are still present in downstream projects that copied the code earlier. Confirmed with the Wycheproof vectors |
 | 2026-11 | [ML-KEM: keys that should be rejected are accepted by liboqs 0.12.0 and pqcrypto-mlkem 0.1.1](advisories/2026-mlkem-input-validation/) | Two packages built on reference ML-KEM code perform none of the FIPS 203 input checks |
 | 2026-11 | [Processor-specific code paths: same vectors, every variant](advisories/2026-processor-paths/) | The same vectors on AVX-512, AVX2, NEON, RISC-V and s390x paths. No new discrepancy; it narrows the earlier notes to x86-64 |
 | 2026-11 | [ML-KEM and ML-DSA outside the large C libraries: 30 implementations](advisories/2026-own-implementations/) | Twenty conform. The others miss an input check or refuse a legitimate edge case, all in current releases and all low severity |
 | 2026-11 | [Zig standard library: ML-KEM decapsulation key import skips the hash check](advisories/2026-zig-mlkem-dk-hash-check/) | `SecretKey.fromBytes` accepts a decapsulation key with an altered hash, in 0.16.0 to current |
+| 2026-11 | [ML-KEM: encapsulation keys that should be rejected are accepted by @noble/post-quantum before 0.6.0](advisories/2026-noble-mlkem-modulus-check/) | The modulus check was present but could not fail. Fixed in 0.6.0; earlier releases are still widely installed |
+| 2026-11 | [SLH-DSA: libbitcoinpqc and PQMagic do not interoperate with FIPS 205 implementations](advisories/2026-slhdsa-interoperability/) | Two libraries documented as SLH-DSA (FIPS 205) produce signatures that a conforming implementation rejects, and the other way round. Not a security weakness |
 
 ## Tests
 
 | Directory | What it does |
 |---|---|
-| [`tests/mldsa-avx2-verifier`](tests/mldsa-avx2-verifier/) | Runs the Wycheproof ML-DSA verification vectors, and signatures with an out-of-bound `z`, against liboqs, PQClean, pqcrypto-mldsa and oqs |
+| [`tests/mldsa-avx2-verifier`](tests/mldsa-avx2-verifier/) | Runs the Wycheproof ML-DSA verification vectors, and signatures with an out-of-bound `z`, against liboqs, PQClean, pqcrypto-mldsa and oqs; a separate script checks pqcrypto-dilithium |
 | [`tests/mlkem-input-validation`](tests/mlkem-input-validation/) | Runs the Wycheproof ML-KEM vectors against liboqs and pqcrypto-mlkem |
 | [`tests/major-libraries`](tests/major-libraries/) | The same vectors against the current code of the major libraries on x86_64, with their processor variants |
 | [`tests/processor-paths`](tests/processor-paths/) | The same vectors on 64-bit ARM, RISC-V and s390x, cross-compiled and run under emulation |
@@ -33,6 +35,8 @@ Every result here comes with the code that produced it.
 | [`tests/python`](tests/python/) | Independent Python packages |
 | [`tests/small-packages`](tests/small-packages/) | Dart, NuGet, npm, Swift and PHP packages |
 | [`tests/other-architectures`](tests/other-architectures/) | Three of the above on ARM, RISC-V, PowerPC, LoongArch and s390x |
+| [`tests/noble-mlkem-modulus-check`](tests/noble-mlkem-modulus-check/) | Runs the Wycheproof ML-KEM vectors against released versions of @noble/post-quantum |
+| [`tests/slhdsa-interoperability`](tests/slhdsa-interoperability/) | Signs and verifies across libbitcoinpqc, btx, PQMagic and OpenSSL, and runs the NIST ACVP SLH-DSA vectors |
 
 ## How this work is done
 

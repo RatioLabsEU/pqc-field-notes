@@ -4,7 +4,7 @@
 
 ## Summary
 
-FIPS 203 requires an implementation to check its inputs before running ML-KEM:
+FIPS 203 says that a key must have passed two checks before it is used. The party that uses the key need not be the one that checks it (sections 7.2 and 7.3 allow the assurance to come from elsewhere), but a library that does not check leaves the job to every caller:
 
 - **Encapsulation key check** (section 7.2): decoding the key's 12-bit coefficients and encoding them again must give back the same bytes. This rejects keys with coefficients that are not reduced modulo q.
 - **Decapsulation key check** (section 7.3): the hash of the encapsulation key stored inside the decapsulation key must match.
@@ -20,7 +20,7 @@ Two released packages perform neither check. Both use reference-style ML-KEM cod
 
 - An affected implementation accepts an encapsulation key that is not in canonical form, or a decapsulation key whose embedded hash or public key has been altered. It does not disclose a key or a shared secret to anyone.
 - The checks exist so that a key has exactly one valid encoding and all implementations agree on which keys are valid. Without them, an affected implementation and a conforming one can disagree.
-- It is a FIPS 203 non-conformance.
+- Whether this is a FIPS 203 non-conformance depends on the caller: the standard is met only if the keys are checked somewhere before they reach these functions.
 
 ## Results
 
@@ -59,6 +59,7 @@ Needs git, python3, cmake, make and gcc; cargo for the `pqcrypto-mlkem` part. Ev
 | 2026 | The `pqcrypto` crates are archived |
 | 20 November 2026 | We run Wycheproof against released versions and record the results above |
 | 20 November 2026 | RustSec publishes [RUSTSEC-2026-0585](https://rustsec.org/advisories/RUSTSEC-2026-0585.html) for `pqcrypto-mlkem` |
+| 21 November 2026 | Correction: the first version of this note said that FIPS 203 requires an implementation to check its inputs and called the behaviour a non-conformance. The standard requires that the key has been checked, not that the library is the one to do it. The summary and the impact section now say so |
 
 ## Credit
 

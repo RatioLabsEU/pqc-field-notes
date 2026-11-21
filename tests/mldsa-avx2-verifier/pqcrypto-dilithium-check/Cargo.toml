@@ -1,0 +1,17 @@
+# Compare the AVX2 verifier of pqcrypto-dilithium 0.5.0 with its portable ("clean") verifier, as pqcrypto-check
+# does for pqcrypto-mldsa 0.1.2.
+[package]
+name = "pqcrypto-dilithium-check"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "Apache-2.0"
+
+[dependencies]
+pqcrypto-dilithium = { version = "=0.5.0", default-features = false, features = ["std"] }
+pqcrypto-traits = "0.3.5"
+
+[features]
+# Default, as for anyone using the crate on x86_64: with "avx2" the Rust interface selects AVX2 at run time.
+default = ["avx2"]
+avx2 = ["pqcrypto-dilithium/avx2"]

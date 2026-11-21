@@ -1,4 +1,4 @@
-# ML-DSA: an unfixed AVX2 verifier in liboqs 0.12–0.15, PQClean and two Rust crates
+# ML-DSA: an unfixed AVX2 verifier in liboqs 0.12–0.15, PQClean and three Rust crates
 
 **Status:** known and fixed upstream (pq-crystals, 3 June 2026). This note documents software that still carries the unfixed code.
 
@@ -9,7 +9,7 @@ The AVX2 implementation of ML-DSA signature verification in the pq-crystals refe
 1. **Missing norm check.** The verifier did not check `||z||∞ < γ1 − β` (FIPS 204, Algorithm 8, line 13). It accepts signatures that a conforming verifier rejects. Upstream issue [pq-crystals/dilithium#113](https://github.com/pq-crystals/dilithium/issues/113), fixed in `d35ba3fe54`.
 2. **`use_hint_avx()` boundary case.** One class of valid signatures is rejected. Fixed in `bba9534a3c`.
 
-Several projects vendored the AVX2 code before those fixes and never picked them up. We confirmed four by running them:
+Several projects vendored the AVX2 code before those fixes and never picked them up. We confirmed five by running them:
 
 | Software | Versions | Affected configuration | Fix available |
 |---|---|---|---|
@@ -17,6 +17,7 @@ Several projects vendored the AVX2 code before those fixes and never picked them
 | [PQClean](https://github.com/PQClean/PQClean) | All (archived August 2026) | `crypto_sign/ml-dsa-*/avx2` | No |
 | [pqcrypto-mldsa](https://crates.io/crates/pqcrypto-mldsa) (Rust) | 0.1.2 | Default `avx2` feature on x86_64 | No (archived) |
 | [oqs](https://crates.io/crates/oqs) (Rust) | 0.11.0, the latest release | Always on x86_64 with AVX2: it builds a bundled liboqs 0.13.0 | No release with liboqs 0.16.0 yet |
+| [pqcrypto-dilithium](https://crates.io/crates/pqcrypto-dilithium) (Rust) | 0.5.0 | Default `avx2` feature on x86_64 (a pre-standard version of Dilithium: see [below](#pqcrypto-dilithium-050)) | No (archived, unmaintained) |
 
 In each case the portable implementation shipped alongside is correct. The same library version therefore gives different verification results depending on the CPU.
 
@@ -62,6 +63,32 @@ Twenty signatures per parameter set, produced by a signer patched to emit only s
 | liboqs 0.12.0 – 0.15.0, portable | 0 | 0 | 0 |
 | liboqs 0.16.0, default and portable | 0 | 0 | 0 |
 
+### pqcrypto-dilithium 0.5.0
+
+[`pqcrypto-dilithium`](https://crates.io/crates/pqcrypto-dilithium) is the archived predecessor of `pqcrypto-mldsa`. Its C code comes from pq-crystals at `918af1a`, a version of Dilithium from before the standard, and its AVX2 verifier has the same two defects. With the default features on x86_64 with AVX2, the crate's Rust interface selects that verifier at run time.
+
+Linux x86_64, Intel Xeon Platinum 8573C, gcc 13.3, Rust 1.100. Per parameter set:
+
+| Verifier | dilithium2 | dilithium3 | dilithium5 |
+|---|---|---|---|
+| Out-of-bound `z` (20 signatures with `γ1 − β ≤ ‖z‖∞ < γ1`), default features (AVX2) | **20 of 20 accepted** | **20 of 20** | **20 of 20** |
+| Out-of-bound `z`, portable code | 0 | 0 | 0 |
+| `use_hint` boundary case (2 valid signatures), default features (AVX2) | **2 of 2 rejected** | **2 of 2** | **2 of 2** |
+| `use_hint` boundary case, portable code | 0 | 0 | 0 |
+
+With the `avx2` feature disabled, the Rust interface uses the portable code and gives its results. As a control, every path accepted 20 signatures per parameter set made through the crate's own interface, and rejected each of them with one byte changed.
+
+Caveats:
+
+- The crate implements a pre-standard version of the scheme, so the Wycheproof ML-DSA vectors used above do not apply to it.
+- The test signatures are built with the crate's own code. The out-of-bound ones come from its portable signer, patched in the same way as PQClean's above, with a key from the crate's own key generation.
+- The `use_hint` signatures are our own construction, not public test vectors: an all-zero public key, `z = 0` and hints on coefficients where `w = 0`, so that the verifier has to compute `UseHint(1, 0)`. The crate's portable verifier accepts them.
+- As above, creating such signatures for a real public key needs its private key. This is not a way to forge someone else's signature.
+
+Mitigation: build the crate without the `avx2` feature, or move to a maintained implementation. The crate is archived and is marked unmaintained in [RUSTSEC-2024-0380](https://rustsec.org/advisories/RUSTSEC-2024-0380.html); RUSTSEC-2026-0586 covers only `pqcrypto-mldsa`.
+
+To reproduce: `./run_pqcrypto_dilithium.sh` in `tests/mldsa-avx2-verifier` (needs gcc, perl and cargo). Log: [`results/pqcrypto-dilithium.log`](results/pqcrypto-dilithium.log), from our run of this script on 21 November 2026.
+
 ## Reproduce
 
 ```sh
@@ -96,6 +123,7 @@ In the affected code the verifier unpacks `z` and proceeds under the comment "sh
 | 19–20 November 2026 | We confirm the defects in liboqs 0.12.0 to 0.15.0, PQClean, pqcrypto-mldsa 0.1.2 and oqs 0.11.0 |
 | 20 November 2026 | Public issue in liboqs ([#2721](https://github.com/open-quantum-safe/liboqs/issues/2721)); question upstream about a CVE ([pq-crystals/dilithium#113](https://github.com/pq-crystals/dilithium/issues/113)); request for a new release of the `oqs` crate ([liboqs-rust#320](https://github.com/open-quantum-safe/liboqs-rust/issues/320)) |
 | 20 November 2026 | RustSec publishes [RUSTSEC-2026-0586](https://rustsec.org/advisories/RUSTSEC-2026-0586.html) for `pqcrypto-mldsa` |
+| 21 November 2026 | We confirm both defects in `pqcrypto-dilithium` 0.5.0 |
 
 ## Credit
 
