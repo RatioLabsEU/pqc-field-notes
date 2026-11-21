@@ -10,7 +10,7 @@
 #   liboqs     liboqs: ML-DSA from the 0.16.0 release, ML-KEM from the development branch at f822b059350a; each in a
 #              distribution build (optimized code chosen at run time) and a portable C build
 #   pqclean    PQClean 0586a824fc0d, ML-DSA "clean"
-#   botan      Botan 3a5a820fa54e, ML-DSA (only the vectors with an empty context)
+#   botan      Botan 3a5a820fa54e, ML-DSA
 #   go         Go 1.27.3 crypto/mldsa and crypto/mlkem, and CIRCL 31be93db4772 (ML-DSA, ML-KEM)
 #   java       Bouncy Castle bcprov-jdk18on 1.87 from Maven Central (ML-DSA, ML-KEM)
 #   rust       RustCrypto ml-dsa / ml-kem and libcrux (automatic, portable and AVX2 paths), commits pinned in
@@ -227,7 +227,7 @@ run_pqclean() {
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Botan, minimized static build with the ML-DSA module. Its verifier takes no context string (see mldsa_botan.cpp).
+# Botan, minimized static build with the ML-DSA module.
 run_botan() {
     local S="$W/botan" L
     fetch_commit https://github.com/randombit/botan.git "$S" "$BOTAN_COMMIT" || { echo "== Botan: could not clone"; return 1; }

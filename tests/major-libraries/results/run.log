@@ -84,9 +84,9 @@ PQCLEAN_MLDSA87_CLEAN      vectors=232 (valid 71, invalid 161, not applicable 9)
 
 ########## Botan
 == Botan 3a5a820fa54e (2026-11-19), minimized build (modules ml_dsa, dilithium, system_rng)
-Botan (empty context only)         ML-DSA-44  vectors=173   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
-Botan (empty context only)         ML-DSA-65  vectors=203   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
-Botan (empty context only)         ML-DSA-87  vectors=234   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+Botan                              ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Botan                              ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Botan                              ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
 
 ########## Go crypto/mldsa, crypto/mlkem and CIRCL
 == go version go1.27.3 linux/amd64, CIRCL 31be93db4772d9482a06c44eb2ed134fdacd2a2b

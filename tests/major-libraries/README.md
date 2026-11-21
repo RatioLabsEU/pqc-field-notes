@@ -11,7 +11,7 @@ Runs the [Wycheproof](https://github.com/C2SP/wycheproof) ML-DSA verification an
 | `symcrypt` | SymCrypt | development branch at `286762b7730e` | 44, 65, 87 | 512, 768, 1024 |
 | `liboqs` | liboqs | 0.16.0 release (ML-DSA); development branch at `f822b059350a`, which reports version 0.16.0 (ML-KEM) | distribution build (AVX2 chosen at run time) and portable C build | the same two builds |
 | `pqclean` | PQClean | `0586a824fc0d` | `clean` | |
-| `botan` | Botan | development branch at `3a5a820fa54e` | vectors with an empty context | |
+| `botan` | Botan | development branch at `3a5a820fa54e` | 44, 65, 87 | |
 | `go` | Go `crypto/mldsa` and `crypto/mlkem`; CIRCL | Go 1.27.3; CIRCL `31be93db4772` | Go and CIRCL | Go: 768, 1024; CIRCL: 512, 768, 1024 |
 | `java` | Bouncy Castle | bcprov-jdk18on 1.87 (Maven Central) | 44, 65, 87 | 512, 768, 1024 |
 | `rust` | RustCrypto `ml-dsa` and `ml-kem`; libcrux `libcrux-ml-dsa` and `libcrux-ml-kem` | `8d3230a53453` (ml-dsa 0.1.2), `b26db85a9b44` (ml-kem 0.3.4), `24330863b3d1` (libcrux 0.0.12), pinned in `rust-*/Cargo.toml` | RustCrypto; libcrux automatic, portable and AVX2 | the same |
@@ -23,7 +23,6 @@ In ML-DSA, a discrepancy is an invalid vector that is accepted (`INVALID ACCEPTE
 
 What the interfaces do not let us test:
 
-- **Botan** takes no context string when verifying. Its 173, 203 and 234 vectors with an empty context are tested; the other 7 per parameter set are reported as "not applicable".
 - **AWS-LC and liboqs** take keys as fixed-length byte strings. In the AWS-LC adapters (ML-DSA and ML-KEM) and the liboqs ML-KEM adapter, a key of another length is counted as rejected without calling the library. For liboqs ML-DSA and PQClean, `wycheproof_mldsa.c` leaves out the vectors whose public key has the wrong length or whose context is longer than 255 bytes, and reports them as "not applicable" (9 per parameter set).
 - **BoringSSL and Go** have no ML-KEM-512 and no interface to import an expanded decapsulation key (`no interface`). BoringSSL's ML-KEM-512 line still shows `seed: 20 vectors`: those are the 20 seeds of the wrong length that the harness rejects itself. Go's ML-KEM-512 is not run.
 - **Where the randomness cannot be fixed** (encapsulation in BoringSSL and SymCrypt), only acceptance of the key is checked: a valid encapsulation vector passes if the key is accepted, an invalid one if it is rejected. The ciphertext and the shared secret are not compared.
@@ -51,9 +50,11 @@ Linux x86_64 with git, curl, python3, gcc, g++, cmake, make, perl, autoconf, aut
 
 No discrepancy in any library or variant: `INVALID ACCEPTED=0` and `valid rejected=0` / `valid fails=0` on every line.
 
-- ML-DSA: `vectors=180`, `210` and `241` for ML-DSA-44, -65 and -87. Botan: `173`, `203` and `234` with `(not applicable: 7)`. liboqs and PQClean: `vectors=171 (valid 77, invalid 94, not applicable 9)` for ML-DSA-44 (201 and 232 for -65 and -87).
+- ML-DSA: `vectors=180`, `210` and `241` for ML-DSA-44, -65 and -87. liboqs and PQClean: `vectors=171 (valid 77, invalid 94, not applicable 9)` for ML-DSA-44 (201 and 232 for -65 and -87).
 - ML-KEM: `seed: 200`, `201` and `202` vectors, `encaps: 261`, `265` and `269`, `expanded dk: 9` for ML-KEM-512, -768 and -1024, except where the library has no interface (see above).
 
 `results/run.log` is our run of `./run.sh` on a 2-core x86_64 machine with AVX-512 (a GitHub Codespace). It reused the builds of a first run from an empty `$WORK`, which printed the same counts. The counts match our earlier runs.
+
+**Correction, 21 November 2026.** The first version of this directory said that Botan's ML-DSA verifier takes no context string, and tested only its 173, 203 and 234 vectors with an empty context. That was a limitation of our adapter, not of Botan: the context is passed with `PK_Signature_Options::with_context`. The adapter now does so and all 180, 210 and 241 vectors are run, with no discrepancy. The Botan lines of `results/run.log` are from that re-run.
 
 Copyright 2026 [RatioLabs](https://www.ratiolabs.eu). Licensed under the Apache License, Version 2.0.
