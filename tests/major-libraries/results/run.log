@@ -1,0 +1,247 @@
+$ ./run.sh
+Wycheproof 65ca494727a5: ML-DSA 180 / 210 / 241 vectors (44 / 65 / 87), ML-KEM 470 / 475 / 480 (512 / 768 / 1024)
+Machine: Linux 6.8.0-1070-azure x86_64; gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0; 2 cores
+CPU: INTEL(R) XEON(R) PLATINUM 8573C; avx avx2 avx512_bitalg avx512_vbmi2 avx512_vnni avx512_vpopcntdq avx512bw avx512cd avx512dq avx512f avx512ifma avx512vbmi avx512vl 
+Note: in ML-KEM, the "seed" lines whose seed is not 64 bytes long (20 per parameter set) are rejected by the
+harness itself without calling the library.
+
+########## wolfSSL
+== wolfSSL 511ea63482eb (2026-11-19), --enable-intelasm --enable-mldsa
+   options.h: USE_INTEL_SPEEDUP WOLFSSL_HAVE_MLDSA WOLFSSL_X86_64_BUILD 
+wolfSSL (auto)                     ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+wolfSSL (auto)                     ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+wolfSSL (auto)                     ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+wolfSSL (no-avx512)                ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+wolfSSL (no-avx512)                ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+wolfSSL (no-avx512)                ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+wolfSSL (no-avx2)                  ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+wolfSSL (no-avx2)                  ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+wolfSSL (no-avx2)                  ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== wolfSSL f10bbcc7a15e (2026-11-19), --enable-intelasm --enable-mlkem
+wolfSSL                        ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+wolfSSL                        ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+wolfSSL                        ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+########## OpenSSL
+== OpenSSL 354f1cf64842 (2026-11-19), default build (linux-x86_64, with assembly)
+OpenSSL                        ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                            ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+
+########## BoringSSL
+== BoringSSL 12cb59022ae9 (2026-11-19), default build (with assembly)
+BoringSSL                      ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: no interface | expanded dk: no interface
+BoringSSL                      ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                      ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                          ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+
+########## AWS-LC
+== AWS-LC 784feabf5fe3 (2026-11-18), default build (with assembly)
+AWS-LC                         ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                             ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+
+########## SymCrypt
+== SymCrypt 286762b7730e (2026-08-05), RelWithDebInfo, non-FIPS
+SymCrypt                       ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+SymCrypt                       ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+SymCrypt                       ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+SymCrypt                           ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+SymCrypt                           ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+SymCrypt                           ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+
+########## liboqs
+== liboqs 0.16.0 at 5a1a854b0dc9 (2026-07-09), build "dist"; optimized implementations compiled in: SIG_ml_dsa_44_x86_64 SIG_ml_dsa_65_x86_64 SIG_ml_dsa_87_x86_64 
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+== liboqs 0.16.0 at 5a1a854b0dc9 (2026-07-09), build "generic"; optimized implementations compiled in: none (portable C only)
+ML-DSA-44                  vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-65                  vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+ML-DSA-87                  vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+== liboqs 0.16.0 at f822b059350a (2026-11-19), build "dist"; optimized implementations compiled in: KEM_ml_kem_512_x86_64 KEM_ml_kem_768_x86_64 KEM_ml_kem_1024_x86_64 
+liboqs 0.16.0                  ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+== liboqs 0.16.0 at f822b059350a (2026-11-19), build "generic"; optimized implementations compiled in: none (portable C only)
+liboqs 0.16.0                  ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+liboqs 0.16.0                  ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+########## PQClean
+== PQClean 0586a824fc0d (2026-08-04), ML-DSA clean
+PQCLEAN_MLDSA44_CLEAN      vectors=171 (valid 77, invalid 94, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+PQCLEAN_MLDSA65_CLEAN      vectors=201 (valid 79, invalid 122, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+PQCLEAN_MLDSA87_CLEAN      vectors=232 (valid 71, invalid 161, not applicable 9)   INVALID ACCEPTED=0   valid rejected=0
+
+########## Botan
+== Botan 3a5a820fa54e (2026-11-19), minimized build (modules ml_dsa, dilithium, system_rng)
+Botan (empty context only)         ML-DSA-44  vectors=173   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+Botan (empty context only)         ML-DSA-65  vectors=203   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+Botan (empty context only)         ML-DSA-87  vectors=234   INVALID ACCEPTED=0   valid rejected=0   (not applicable: 7)
+
+########## Go crypto/mldsa, crypto/mlkem and CIRCL
+== go version go1.27.3 linux/amd64, CIRCL 31be93db4772d9482a06c44eb2ed134fdacd2a2b
+   go-mldsa: github.com/cloudflare/circl v1.6.6-0.20261116231535-31be93db4772
+Go go1.27.3 amd64
+Go crypto/mldsa ML-DSA-44          vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Go crypto/mldsa ML-DSA-65          vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Go crypto/mldsa ML-DSA-87          vectors=241   INVALID ACCEPTED=0   valid rejected=0
+CIRCL ML-DSA-44                    vectors=180   INVALID ACCEPTED=0   valid rejected=0
+CIRCL ML-DSA-65                    vectors=210   INVALID ACCEPTED=0   valid rejected=0
+CIRCL ML-DSA-87                    vectors=241   INVALID ACCEPTED=0   valid rejected=0
+   go-mlkem: github.com/cloudflare/circl v1.6.6-0.20261116231535-31be93db4772
+Go go1.27.3 amd64
+Go crypto/mlkem ML-KEM-768     | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+Go crypto/mlkem ML-KEM-1024    | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+CIRCL ML-KEM-512               | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+CIRCL ML-KEM-768               | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+CIRCL ML-KEM-1024              | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+########## Bouncy Castle (Java)
+== Bouncy Castle bcprov-jdk18on-1.87.jar from Maven Central (sha256 12d2d3dd82a9ec15e92ec7c7943ee64f6097c6dc12c07e984f1693b77565b9aa; sha1 matches the published .sha1)
+   openjdk version "25.0.5.0.2" 2026-10-22 LTS
+Bouncy Castle ML-DSA-44            vectors=180   INVALID ACCEPTED=0   valid rejected=0
+Bouncy Castle ML-DSA-65            vectors=210   INVALID ACCEPTED=0   valid rejected=0
+Bouncy Castle ML-DSA-87            vectors=241   INVALID ACCEPTED=0   valid rejected=0
+Bouncy Castle ML-KEM-512       | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+Bouncy Castle ML-KEM-768       | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+Bouncy Castle ML-KEM-1024      | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+########## RustCrypto and libcrux
+== wycheproof-mldsa, rustc 1.100.0 (0ef1bc386 2026-11-09), RUSTFLAGS="-C target-cpu=native"
+   name = "libcrux-ml-dsa"
+   version = "0.0.12"
+   source = "git+https://github.com/cryspen/libcrux?rev=24330863b3d1d4179e4bcea8cef6bf6fa313057e#24330863b3d1d4179e4bcea8cef6bf6fa313057e"
+   name = "ml-dsa"
+   version = "0.1.2"
+   source = "git+https://github.com/RustCrypto/signatures?rev=8d3230a534530dea0d7657cfc591418490a141ff#8d3230a534530dea0d7657cfc591418490a141ff"
+RustCrypto ml-dsa ML-DSA-44        vectors=180   INVALID ACCEPTED=0   valid rejected=0
+RustCrypto ml-dsa ML-DSA-65        vectors=210   INVALID ACCEPTED=0   valid rejected=0
+RustCrypto ml-dsa ML-DSA-87        vectors=241   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-44 (auto)           vectors=180   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-65 (auto)           vectors=210   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-87 (auto)           vectors=241   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-44 (portable)       vectors=180   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-65 (portable)       vectors=210   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-87 (portable)       vectors=241   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-44 (avx2)           vectors=180   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-65 (avx2)           vectors=210   INVALID ACCEPTED=0   valid rejected=0
+libcrux ML-DSA-87 (avx2)           vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== wycheproof-mlkem, rustc 1.100.0 (0ef1bc386 2026-11-09), RUSTFLAGS="-C target-cpu=native"
+   name = "libcrux-ml-kem"
+   version = "0.0.12"
+   source = "git+https://github.com/cryspen/libcrux?rev=24330863b3d1d4179e4bcea8cef6bf6fa313057e#24330863b3d1d4179e4bcea8cef6bf6fa313057e"
+   name = "ml-kem"
+   version = "0.3.4"
+   source = "git+https://github.com/RustCrypto/KEMs?rev=b26db85a9b44e532a0167333ce34743b6886e22c#b26db85a9b44e532a0167333ce34743b6886e22c"
+RustCrypto ML-KEM-512          | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+RustCrypto ML-KEM-768          | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+RustCrypto ML-KEM-1024         | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+libcrux ML-KEM-512 (auto)      | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-768 (auto)      | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-1024 (auto)     | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-512 (portable)  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-768 (portable)  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-1024 (portable) | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-512 (avx2)      | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-768 (avx2)      | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+libcrux ML-KEM-1024 (avx2)     | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+
+########## OpenSSL, AWS-LC and BoringSSL with OPENSSL_ia32cap masks
+#### x86_64, no mask  (OPENSSL_ia32cap unset)
+== OpenSSL 354f1cf64842 (2026-11-19)
+OpenSSL                        ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                            ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== AWS-LC 784feabf5fe3 (2026-11-18)
+AWS-LC                         ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                             ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== BoringSSL 12cb59022ae9 (2026-11-19)
+BoringSSL                      ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: no interface | expanded dk: no interface
+BoringSSL                      ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                      ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                          ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+#### x86_64, AVX-512 off  (OPENSSL_ia32cap=:~0xFFFF0000)
+== OpenSSL 354f1cf64842 (2026-11-19)
+OpenSSL                        ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                            ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== AWS-LC 784feabf5fe3 (2026-11-18)
+AWS-LC                         ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                             ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== BoringSSL 12cb59022ae9 (2026-11-19)
+BoringSSL                      ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: no interface | expanded dk: no interface
+BoringSSL                      ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                      ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                          ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+#### x86_64, AVX2 and AVX-512 off  (OPENSSL_ia32cap=:~0xFFFF0020)
+== OpenSSL 354f1cf64842 (2026-11-19)
+OpenSSL                        ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                            ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== AWS-LC 784feabf5fe3 (2026-11-18)
+AWS-LC                         ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                             ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== BoringSSL 12cb59022ae9 (2026-11-19)
+BoringSSL                      ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: no interface | expanded dk: no interface
+BoringSSL                      ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                      ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                          ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+#### x86_64, AVX, AVX2 and AVX-512 off  (OPENSSL_ia32cap=~0x1000000000000000:~0xFFFF0020)
+== OpenSSL 354f1cf64842 (2026-11-19)
+OpenSSL                        ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                        ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+OpenSSL                            ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+OpenSSL                            ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== AWS-LC 784feabf5fe3 (2026-11-18)
+AWS-LC                         ML-KEM-512  | seed: 200 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 261 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                         ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, valid fails=0
+AWS-LC                             ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+AWS-LC                             ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0
+== BoringSSL 12cb59022ae9 (2026-11-19)
+BoringSSL                      ML-KEM-512  | seed: 20 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: no interface | expanded dk: no interface
+BoringSSL                      ML-KEM-768  | seed: 201 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 265 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                      ML-KEM-1024 | seed: 202 vectors, INVALID ACCEPTED=0, valid fails=0 | encaps: 269 vectors, INVALID ACCEPTED=0, valid fails=0 | expanded dk: no interface
+BoringSSL                          ML-DSA-44  vectors=180   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-65  vectors=210   INVALID ACCEPTED=0   valid rejected=0
+BoringSSL                          ML-DSA-87  vectors=241   INVALID ACCEPTED=0   valid rejected=0

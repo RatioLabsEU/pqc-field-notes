@@ -1,0 +1,16 @@
+# Copyright 2026 RatioLabs (https://www.ratiolabs.eu). Licensed under the Apache License, Version 2.0.
+[package]
+name = "wycheproof-mlkem"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+# Development branches at the commits we tested (ml-kem 0.3.4, libcrux-ml-kem 0.0.12).
+[dependencies]
+ml-kem = { git = "https://github.com/RustCrypto/KEMs", rev = "b26db85a9b44e532a0167333ce34743b6886e22c", features = ["hazmat"] }
+
+[target.'cfg(target_arch = "x86_64")'.dependencies]
+libcrux-ml-kem = { git = "https://github.com/cryspen/libcrux", rev = "24330863b3d1d4179e4bcea8cef6bf6fa313057e", features = ["simd256"] }
+
+[target.'cfg(target_arch = "aarch64")'.dependencies]
+libcrux-ml-kem = { git = "https://github.com/cryspen/libcrux", rev = "24330863b3d1d4179e4bcea8cef6bf6fa313057e", features = ["simd128"] }

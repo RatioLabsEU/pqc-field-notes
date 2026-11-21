@@ -24,6 +24,7 @@ Every result here comes with the code that produced it.
 |---|---|
 | [`tests/mldsa-avx2-verifier`](tests/mldsa-avx2-verifier/) | Runs the Wycheproof ML-DSA verification vectors, and signatures with an out-of-bound `z`, against liboqs, PQClean, pqcrypto-mldsa and oqs |
 | [`tests/mlkem-input-validation`](tests/mlkem-input-validation/) | Runs the Wycheproof ML-KEM vectors against liboqs and pqcrypto-mlkem |
+| [`tests/major-libraries`](tests/major-libraries/) | The same vectors against the current code of the major libraries on x86_64, with their processor variants |
 | [`tests/processor-paths`](tests/processor-paths/) | The same vectors on 64-bit ARM, RISC-V and s390x, cross-compiled and run under emulation |
 | [`tests/openjdk`](tests/openjdk/) | OpenJDK 24 to 27, in five execution modes |
 | [`tests/zig-std`](tests/zig-std/) | The Zig standard library |
