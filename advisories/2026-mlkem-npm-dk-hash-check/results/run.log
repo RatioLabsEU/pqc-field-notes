@@ -1,0 +1,36 @@
+Wycheproof 65ca494727a5: 470 / 475 / 480 ML-KEM vectors (512 / 768 / 1024)
+node v24.19.0
+
+mlkem 3.0.0 ML-KEM-512     | seed decaps: 200 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 261 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, VALID FAILED=0
+mlkem 3.0.0 ML-KEM-768     | seed decaps: 201 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 265 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, VALID FAILED=0
+mlkem 3.0.0 ML-KEM-1024    | seed decaps: 202 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 269 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, VALID FAILED=0
+mlkem 2.7.2 ML-KEM-512     | seed decaps: 200 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 261 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, VALID FAILED=0
+mlkem 2.7.2 ML-KEM-768     | seed decaps: 201 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 265 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, VALID FAILED=0
+mlkem 2.7.2 ML-KEM-1024    | seed decaps: 202 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 269 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=0, VALID FAILED=0
+  INVALID ACCEPTED  [expanded dk] tcId=6  Decapsulation key with corrupted hash InvalidDecapsulationKey
+  INVALID ACCEPTED  [expanded dk] tcId=7  Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+mlkem 2.7.1 ML-KEM-512     | seed decaps: 200 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 261 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, VALID FAILED=0
+  INVALID ACCEPTED  [expanded dk] tcId=6  Decapsulation key with corrupted hash InvalidDecapsulationKey
+  INVALID ACCEPTED  [expanded dk] tcId=7  Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+mlkem 2.7.1 ML-KEM-768     | seed decaps: 201 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 265 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, VALID FAILED=0
+  INVALID ACCEPTED  [expanded dk] tcId=6  Decapsulation key with corrupted hash InvalidDecapsulationKey
+  INVALID ACCEPTED  [expanded dk] tcId=7  Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+mlkem 2.7.1 ML-KEM-1024    | seed decaps: 202 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 269 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, VALID FAILED=0
+  INVALID ACCEPTED  [expanded dk] tcId=6  Decapsulation key with corrupted hash InvalidDecapsulationKey
+  INVALID ACCEPTED  [expanded dk] tcId=7  Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+mlkem 2.7.0 ML-KEM-512     | seed decaps: 200 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 261 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, VALID FAILED=0
+  INVALID ACCEPTED  [expanded dk] tcId=6  Decapsulation key with corrupted hash InvalidDecapsulationKey
+  INVALID ACCEPTED  [expanded dk] tcId=7  Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+mlkem 2.7.0 ML-KEM-768     | seed decaps: 201 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 265 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, VALID FAILED=0
+  INVALID ACCEPTED  [expanded dk] tcId=6  Decapsulation key with corrupted hash InvalidDecapsulationKey
+  INVALID ACCEPTED  [expanded dk] tcId=7  Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+mlkem 2.7.0 ML-KEM-1024    | seed decaps: 202 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 269 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, VALID FAILED=0
+  INVALID ACCEPTED  [expanded dk] tcId=6  Decapsulation key with corrupted hash InvalidDecapsulationKey
+  INVALID ACCEPTED  [expanded dk] tcId=7  Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+mlkem 2.5.0 ML-KEM-512     | seed decaps: 200 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 261 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, VALID FAILED=0
+  INVALID ACCEPTED  [expanded dk] tcId=6  Decapsulation key with corrupted hash InvalidDecapsulationKey
+  INVALID ACCEPTED  [expanded dk] tcId=7  Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+mlkem 2.5.0 ML-KEM-768     | seed decaps: 201 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 265 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, VALID FAILED=0
+  INVALID ACCEPTED  [expanded dk] tcId=6  Decapsulation key with corrupted hash InvalidDecapsulationKey
+  INVALID ACCEPTED  [expanded dk] tcId=7  Decapsulation key with corrupted embedded encapsulation key InvalidDecapsulationKey
+mlkem 2.5.0 ML-KEM-1024    | seed decaps: 202 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | encaps: 269 vectors, INVALID ACCEPTED=0, VALID FAILED=0 | expanded dk: 9 vectors, INVALID ACCEPTED=2, VALID FAILED=0

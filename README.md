@@ -18,6 +18,7 @@ Every result here comes with the code that produced it.
 | 2026-11 | [ML-KEM and ML-DSA outside the large C libraries: 30 implementations](advisories/2026-own-implementations/) | Twenty conform. The others miss an input check or refuse a legitimate edge case, all in current releases and all low severity |
 | 2026-11 | [Zig standard library: ML-KEM decapsulation key import skips the hash check](advisories/2026-zig-mlkem-dk-hash-check/) | `SecretKey.fromBytes` accepts a decapsulation key with an altered hash, in 0.16.0 to current |
 | 2026-11 | [ML-KEM: encapsulation keys that should be rejected are accepted by @noble/post-quantum before 0.6.0](advisories/2026-noble-mlkem-modulus-check/) | The modulus check was present but could not fail. Fixed in 0.6.0; earlier releases are still widely installed |
+| 2026-11 | [ML-KEM: `mlkem` (npm) before 2.7.2 did not check the hash inside the decapsulation key](advisories/2026-mlkem-npm-dk-hash-check/) | `decap` accepted a decapsulation key with an altered hash. Reported privately; fixed by the maintainer in 3.0.0 and 2.7.2 two days later |
 | 2026-11 | [SLH-DSA: libbitcoinpqc and PQMagic do not interoperate with FIPS 205 implementations](advisories/2026-slhdsa-interoperability/) | Two libraries documented as SLH-DSA (FIPS 205) produce signatures that a conforming implementation rejects, and the other way round. Not a security weakness |
 
 ## Tests
@@ -36,6 +37,7 @@ Every result here comes with the code that produced it.
 | [`tests/small-packages`](tests/small-packages/) | Dart, NuGet, npm, Swift and PHP packages |
 | [`tests/other-architectures`](tests/other-architectures/) | Three of the above on ARM, RISC-V, PowerPC, LoongArch and s390x |
 | [`tests/noble-mlkem-modulus-check`](tests/noble-mlkem-modulus-check/) | Runs the Wycheproof ML-KEM vectors against released versions of @noble/post-quantum |
+| [`tests/mlkem-npm-dk-hash-check`](tests/mlkem-npm-dk-hash-check/) | Runs the Wycheproof ML-KEM vectors against released versions of the npm package mlkem |
 | [`tests/slhdsa-interoperability`](tests/slhdsa-interoperability/) | Signs and verifies across libbitcoinpqc, btx, PQMagic and OpenSSL, and runs the NIST ACVP SLH-DSA vectors |
 
 ## How this work is done

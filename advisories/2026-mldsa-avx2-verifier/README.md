@@ -124,6 +124,7 @@ In the affected code the verifier unpacks `z` and proceeds under the comment "sh
 | 20 November 2026 | Public issue in liboqs ([#2721](https://github.com/open-quantum-safe/liboqs/issues/2721)); question upstream about a CVE ([pq-crystals/dilithium#113](https://github.com/pq-crystals/dilithium/issues/113)); request for a new release of the `oqs` crate ([liboqs-rust#320](https://github.com/open-quantum-safe/liboqs-rust/issues/320)) |
 | 20 November 2026 | RustSec publishes [RUSTSEC-2026-0586](https://rustsec.org/advisories/RUSTSEC-2026-0586.html) for `pqcrypto-mldsa` |
 | 21 November 2026 | We confirm both defects in `pqcrypto-dilithium` 0.5.0 |
+| 22 November 2026 | RustSec publishes [RUSTSEC-2026-0593](https://rustsec.org/advisories/RUSTSEC-2026-0593.html) for `pqcrypto-dilithium` |
 
 ## Credit
 
